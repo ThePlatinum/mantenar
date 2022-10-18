@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('trails', function (Blueprint $table) {
             $table->id();
+            $table->string('action');
+            $table->foreignIdFor(App\Models\User::class, 'author_user_id')->constrained('users');
             $table->timestamps();
         });
     }

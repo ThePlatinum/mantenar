@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('viewers', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(App\Models\Share::class, 'share_id')->constrained('shares')->cascadeOnDelete();
+            $table->foreignIdFor(App\Models\User::class, 'user_id')->constrained('users');
             $table->timestamps();
         });
     }
