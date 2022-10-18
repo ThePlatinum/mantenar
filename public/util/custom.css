@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+
+::root {
+/* Colors */
+--brand-blue: #EF5DA8;
+--brand-pink: #080A41;
+--background-color: #c6c6ff;
+}
+
+* {
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+html, body {
+  background-color: var(--background-color) !important;
+}

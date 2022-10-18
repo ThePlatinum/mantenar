@@ -1,6 +1,6 @@
 @extends('layouts.theme')
 @section('content')
-<div id="app">
-  @yield('content')
+<div id="setup">
+    @yield('setup')
 </div>
 @endsection
