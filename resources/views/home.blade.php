@@ -15,6 +15,14 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    @admin
+                    You are an Admin
+                    @endadmin
+
+                    @staff
+                    You are a staff
+                    @endstaff
                 </div>
             </div>
         </div>
