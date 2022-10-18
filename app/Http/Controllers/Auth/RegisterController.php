@@ -90,7 +90,7 @@ class RegisterController extends Controller
     return User::create([
       'firstname' => $data['firstname'],
       'lastname' => $data['lastname'],
-      'position' => $data['job_title'],
+      'job_title' => $data['job_title'],
       'email' => $data['email'],
       'password' => Hash::make($data['password']),
     ]);
@@ -101,7 +101,7 @@ class RegisterController extends Controller
     return User::create([
       'firstname' => $data['firstname'],
       'lastname' => $data['lastname'],
-      'position' => $data['job_title'],
+      'job_title' => $data['job_title'],
       'email' => $data['email'],
       'is_admin' => true,
       'password' => Hash::make($data['password']),
