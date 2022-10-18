@@ -3,83 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  public function setup_organization()
+  {
+    if (Setting::org_name()) return redirect()->route('setup_administrator');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    return view('settings.setup_org');
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Setting $setting)
-    {
-        //
-    }
+  public function setup_administrator()
+  {
+    if (! Setting::org_name() ) return redirect()->route('setup_organization');
+    if ( User::where('is_admin', true)->get()->count() ) return redirect()->route('dashboard');
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Setting $setting)
-    {
-        //
-    }
+    $org_name = Setting::org_name();
+    return view('settings.setup_admin', compact('org_name'));
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Setting $setting)
-    {
-        //
-    }
+  public function update_organization(Request $request)
+  {
+    $validate = Validator::make($request->all(), [
+      'org_name' => 'required|string'
+    ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Setting $setting)
-    {
-        //
-    }
+    if ($validate->fails())
+    return redirect()->back()->withErrors($validate->errors())->withInput();
+
+    $org_ = Setting::where('key', 'organization_name')->first();
+    $org_->value = $request->org_name;
+    $org_->save();
+
+    return redirect()->route('setup_administrator')->with('success', 'Organization Created Successfuly!');
+  }
 }

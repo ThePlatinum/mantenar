@@ -9,4 +9,8 @@ class Setting extends Model
 {
   use HasFactory;
   protected $guarded = [];
+
+  static function org_name(){
+    return Setting::where('key', 'organization_name')->first()->value;
+  }
 }

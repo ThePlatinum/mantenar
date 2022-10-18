@@ -44,6 +44,20 @@ a {
   margin-top: -220px;
 }
 
+.btn__b_blue {
+  color: white;
+  background-color: var(--brand-blue);
+  border-color: var(--brand-blue);
+}
+
+.setup_input {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 2px solid var(--brand-blue);
+  font-size: x-large;
+  margin: 1rem 0;
+}
+
 @media(max-width:500px) {
 
   .mt__neg__ {
