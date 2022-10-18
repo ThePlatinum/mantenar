@@ -14,9 +14,9 @@
   <main class="py-4 container">
     @yield('content')
 
-    <div class="text-center">
+    <div class="text-center py-4">
       <hr>
-      <h6>Copyright &copy; Mantenar 2022 | <a href="https://emmannueldesina.vercel.app/" target="_blank" rel="noopener noreferrer">Platinum Innovations</a> </h6>
+      <h6>Copyright &copy; Mantenar 2022 | <a class="b__p" href="https://emmannueldesina.vercel.app/" target="_blank" rel="noopener noreferrer">Platinum Innovations</a> </h6>
     </div>
   </main>
 

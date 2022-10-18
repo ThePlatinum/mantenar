@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
 
-::root {
+:root {
 /* Colors */
---brand-blue: #EF5DA8;
---brand-pink: #080A41;
---background-color: #c6c6ff;
+--brand-pink: #EF5DA8;
+--brand-blue: #080A41;
+--background-color: #EFEFFF;
 }
 
 * {
@@ -13,4 +13,41 @@
 
 html, body {
   background-color: var(--background-color) !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Utils */
+.r__10 {
+  border-radius: 10px !important;
+}
+
+.bg__blue {
+  background-color: var(--brand-blue);
+}
+
+.b__b {
+  color: var(--brand-blue);
+}
+
+.b__p {
+  color: var(--brand-pink);
+}
+
+.min_vh_50 {
+  min-height: 50vh;
+}
+
+.mt__neg__ {
+  margin-top: -220px;
+}
+
+@media(max-width:500px) {
+
+  .mt__neg__ {
+    margin-top: -300px;
+  }
+  
 }
