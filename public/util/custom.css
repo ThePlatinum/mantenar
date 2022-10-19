@@ -47,9 +47,19 @@ a {
   margin-top: -220px;
 }
 
+.ml__neg__ {
+  margin-left: -10vw;
+}
+
 .btn__b_blue {
   color: white;
   background-color: var(--brand-blue);
+  border-color: var(--brand-blue);
+}
+
+.btn__b_blue:hover {
+  color: var(--brand-blue);
+  background-color: white;
   border-color: var(--brand-blue);
 }
 
@@ -57,7 +67,7 @@ a {
   border: 0;
   border-radius: 0;
   border-bottom: 2px solid var(--brand-blue);
-  font-size: x-large;
+  font-size: large;
   margin: 1rem 0;
 }
 
@@ -95,7 +105,7 @@ a {
   .mt__neg__ {
     margin-top: -300px;
   }
-
+  
 }
 
 
