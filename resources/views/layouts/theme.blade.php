@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Mantenar') }}</title>
   <link rel="icon" type="images/mantenar.svg" href="{{ asset('images/mantenar.svg') }}">
 </head>
 
@@ -23,6 +23,11 @@
   <link href="{{ asset('util/bootstrap-5.1.3-slim/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('util/boxicons-2.1.4/boxicons.min.css') }}" rel="stylesheet">
   <link href="{{ asset('util/custom.css') }}" rel="stylesheet">
+  <link href="{{ asset('util/multi-select/filter_multi_select.css') }}" rel="stylesheet">
+
+  <script src="{{ asset('util/jquery-3.6.0.js') }}" ></script>
+  <script src="{{ asset('util/multi-select/filter-multi-select-bundle.min.js') }}" ></script>
+  @stack('scripts')
 </body>
 
 </html>
