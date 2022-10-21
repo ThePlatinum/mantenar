@@ -41,4 +41,25 @@ class SettingController extends Controller
 
     return redirect()->route('setup_administrator')->with('success', 'Organization Created Successfuly!');
   }
+
+  static function size_type($size) {
+    $calcSize = $size / 1000000; // 1048576 => 1024 1000000 => 1000
+    if ($calcSize < 1) {
+      $fileSize = round(($calcSize * 100000)) / 100;
+      $type = 'Kb';
+    }
+    elseif ($calcSize < 500) {
+      $fileSize = round(($calcSize * 100)) / 100;
+      $type = 'Mb';
+    }else {
+      $calcSize = $calcSize / 1000000; 
+      $fileSize = round(($calcSize * 100)) / 100;
+      $type = 'Gb';
+    }
+
+    return [
+      'size' => $fileSize,
+      'type' => $type
+    ];
+  }
 }

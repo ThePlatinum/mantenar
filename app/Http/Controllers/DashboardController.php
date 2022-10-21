@@ -19,7 +19,8 @@ class DashboardController extends Controller
     $staffs = User::where('is_admin', false)->get()->count();
     $admins = User::where('is_admin', true)->get()->count();
     $shares = Share::all()->count();
-    $storage = Share::all()->sum('size');
+    $size = Share::all()->sum('size');
+    $storage = SettingController::size_type($size);
 
     return view('dashboard', compact('staffs', 'admins', 'shares', 'storage'));
   }

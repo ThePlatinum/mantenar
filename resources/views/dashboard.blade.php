@@ -76,7 +76,7 @@
           <small>Stroage Used</small>
           <div class="d-flex gap-3 align-items-center pt-2">
             <div class="__icon"> <i class='bx bxs-hdd' ></i> </div>
-            <h4 class="__count"> {{$storage}} </h4>
+            <h4 class="__count"> {{$storage['size']}} {{$storage['type']}}</h4>
           </div>
         </div>
       </div>
