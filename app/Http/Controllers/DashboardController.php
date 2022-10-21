@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Share;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,6 +16,11 @@ class DashboardController extends Controller
    */
   public function index()
   {
-    return view('dashboard');
+    $staffs = User::where('is_admin', false)->get()->count();
+    $admins = User::where('is_admin', true)->get()->count();
+    $shares = Share::all()->count();
+    $storage = Share::all()->sum('size');
+
+    return view('dashboard', compact('staffs', 'admins', 'shares', 'storage'));
   }
 }

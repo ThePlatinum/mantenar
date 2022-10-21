@@ -38,4 +38,20 @@ class User extends Authenticatable
     'email_verified_at' => 'datetime',
     'is_admin' => 'boolean',
   ];
+
+  public function sent() {
+    return $this->hasMany(Share::class, 'author_user_id');
+  }
+
+  public function recieved() {
+    return $this->hasManyThrough(Share::class, Viewer::class, 'share_id', 'id');
+  }
+
+  public function getFullnameAttribute(){
+    return $this->firstname .' '. $this->lastname;
+  }
+
+  protected $appends = [
+    'fullname'
+  ];
 }

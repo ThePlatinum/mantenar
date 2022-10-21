@@ -4,7 +4,7 @@
   /* Colors */
   --brand-pink: #EF5DA8;
   --brand-blue: #080A41;
-  --background-color: #EFEFFF;
+  --background-color: #EFEFEF;
   --bs-gutter-x: 0.5rem;
 }
 
@@ -63,6 +63,18 @@ a {
   border-color: var(--brand-blue);
 }
 
+.btn__b_outline_blue {
+  color: var(--brand-blue);
+  background-color: white;
+  border-color: var(--brand-blue);
+}
+
+.btn__b_outline_blue:hover {
+  color: white;
+  background-color: var(--brand-blue);
+  border-color: var(--brand-blue);
+}
+
 .setup_input {
   border: 0;
   border-radius: 0;
@@ -98,6 +110,25 @@ a {
 
 .dropdown__item:hover {
   background-color: var(--background-color);
+}
+
+.__icon {
+  padding: 5px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--brand-pink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 200 !important;
+}
+
+.__count {
+  font-size: 50px;
+  padding: 0;
+  margin: 0;
 }
 
 @media(max-width:500px) {
