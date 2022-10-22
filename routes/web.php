@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ShareController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['setup', 'auth'])->group(function () {
   Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+  Route::controller(ShareController::class)->group(function () {
+    Route::get('/newshare', 'index')->name('newshare');
+    Route::post('/make_newshare', 'store')->name('make_newshare');
+    Route::get('/view_newshare/{slug}', 'show')->name('viewshare');
+  });
 });
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::controller(SettingController::class)->group(function () {
   Route::get('/setup_organization', 'setup_organization')->name('setup_organization');
