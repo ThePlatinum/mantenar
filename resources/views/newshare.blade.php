@@ -1,14 +1,5 @@
 @extends('layouts.app')
 @section('app_content')
-<style>
-  .dropbox {
-    border: 1px dashed #CCC;
-    padding: 3vh 5vw;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: #EEE5;
-  }
-</style>
 <script>
   function filedrop(name) {
     let input = document.createElement('input');

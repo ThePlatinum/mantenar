@@ -62,7 +62,10 @@ class ShareController extends Controller
   
   public function show($slug)
   {
-    //
+    $share = Share::where('slug', $slug)->first();
+    if (!$share) return redirect()->back()->with('error', 'Invalid Request!');
+
+    return view('viewshare', compact('share'));
   }
 
   /**

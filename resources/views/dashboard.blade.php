@@ -88,25 +88,31 @@
     <div class="r__10 p-3 bg-white">
       <h5>Sent</h5>
       <div class="table-responsive nowrap">
-        <table class="table">
+        <table class="table table-striped">
           <thead>
             <tr class="bg-light">
-              <td>Document Name</td>
-              <td>Share with</td>
-              <td></td>
+              <th scope="col">Document Name</th>
+              <th scope="col">Shared with</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             @forelse (auth()->user()->sent as $sent)
             <tr>
-              <td></td>
-              <td></td>
-              <td class="float-left"></td>
+              <td> {{$sent->name}} </td>
+              <td> {{$sent->viewers[0]->fullname}} 
+                @if ($sent->viewers->count() > 1)
+                <span class="__others">+{{$sent->viewers->count()-1}} others</span>
+                @endif
+              </td>
+              <td class="float__left"><a href="{{route('viewshare', $sent->slug)}}" class="btn btn__b_blue">View</a></td>
             </tr>
             @empty
-            <div class="py-5 text-center">
-              You currently have no shared file. <br> <a href="{{route('newshare')}}" class="btn btn__b_outline_blue px-4 mt-2">New Share</a>
-            </div>
+            <tr>
+              <td colspan="3" class="text-center p-5">
+                You currently have no shared file. <br> <a href="{{route('newshare')}}" class="btn btn__b_outline_blue px-4 mt-2">New Share</a>
+              </td>
+            </tr>
             @endforelse
           </tbody>
         </table>
@@ -117,13 +123,32 @@
   <div class="col-md-6">
     <div class="r__10 p-3 bg-white">
       <h5>Shared with me</h5>
-      @forelse (auth()->user()->recieved as $recieved)
-
-      @empty
-      <div class="py-5 text-center">
-        You currently have no file shared with you. <br>
+      <div class="table-responsive nowrap">
+        <table class="table">
+          <thead>
+            <tr class="bg-light">
+              <th scope="col">Document Name</th>
+              <th scope="col">Shared by</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            @forelse (auth()->user()->recieved as $recieved)
+            <tr>
+              <td> {{$recieved->name}} </td>
+              <td> {{$recieved->owner->fullname}} </td>
+              <td class="float__left"><a href="{{route('viewshare', $recieved->slug)}}" class="btn btn__b_blue">View</a></td>
+            </tr>
+            @empty
+            <tr>
+              <td colspan="3" class="text-center p-5">
+                No file has been shared with you.
+              </td>
+            </tr>
+            @endforelse
+          </tbody>
+        </table>
       </div>
-      @endforelse
     </div>
   </div>
 </div>

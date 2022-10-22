@@ -20,7 +20,7 @@ Route::middleware(['setup', 'auth'])->group(function () {
   Route::controller(ShareController::class)->group(function () {
     Route::get('/newshare', 'index')->name('newshare');
     Route::post('/make_newshare', 'store')->name('make_newshare');
-    Route::get('/view_newshare/{slug}', 'show')->name('viewshare');
+    Route::get('/_/_/{slug}', 'show')->name('viewshare');
   });
 });
 Auth::routes(['register' => false]);

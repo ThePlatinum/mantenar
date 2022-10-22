@@ -131,6 +131,35 @@ a {
   margin: 0;
 }
 
+.float__left{
+  display: flex;
+  justify-content: end;
+}
+
+.file__share {
+  width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+}
+
+.dropbox {
+  border: 1px dashed #CCC;
+  padding: 3vh 5vw;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #EEE5;
+}
+
+.filbox {
+  border: 1px dashed #CCC;
+  border-radius: 10px;
+  background-color: #EEE5;
+}
+
+iframe.file__share {
+  height: 90vh;
+}
+
 @media(max-width:500px) {
 
   .mt__neg__ {
