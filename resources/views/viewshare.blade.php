@@ -50,7 +50,76 @@
     <div class="r__10 p-3 bg-white">
       <small>Comments</small>
       <hr class="mt-0 pt-0">
+
+      <div id="comments_list" class="__comments">
+        @forelse($comments as $comment)
+        <div class="{{ ($comment->author_user_id == Auth()->user()->id) ? 'comment__right' : 'comment__left'}}">
+          <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3 bg-me">
+            {{$comment->body}}
+            <div class="text-muted small text-nowrap">
+              <small> @if ($comment->author_user_id != Auth()->user()->id) {{$comment->sender_name}} <br>  @endif {{$comment->date.' | '.$comment->time }}</small>
+            </div>
+          </div>
+        </div>
+        @empty
+        <div class="p-5 text-center">
+          No comments on this file shared yet
+        </div>
+        @endforelse
+      </div>
+
+      <div class="py-3 border-top">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Type your comment" id="comment_box">
+          <button class="btn btn__b_blue d-flex justify-content-center align-items-center gap-2" onclick="send_comment()">Send <i class='bx bx-send'></i></button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+@push('scripts')
+<script>
+  function scroll_comments_list() {
+    try {
+      $('#comments_list').animate({
+        scrollTop: $('#comments_list').prop("scrollHeight")
+      }, 200);
+    } catch (error) {
+      let comments_list = document.getElementById('comments_list')
+      comments_list.scrollTop = comments_list.scrollHeight + 10
+    }
+  }
+  scroll_comments_list()
+
+  function send_comment() {
+    $.ajax({
+      url: "{{route('send_comment')}}",
+      method: 'POST',
+      data: {
+        share_id: "<?php echo $share->id ?>",
+        body: $('#comment_box').val(),
+        _token: '{{csrf_token()}}'
+      },
+      error: err => console.log('err: ', err),
+      success: result => {
+        let length = <?php echo $comments->count(); ?>;
+        if (result.comment) {
+          if (length < 1) $('#comments_list').text('')
+          $('#comments_list').append(`
+          <div class=${ (result.comment.author_user_id == <?php echo Auth()->user()->id; ?> ) ? 'comment__right' : 'comment__left'}>
+            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3 bg-me">
+              ${result.comment.body}
+              <div class="text-muted text-nowrap">  <small>${result.comment.date + ' | ' +result.comment.time}</small> </div>
+            </div>
+          </div>`)
+          $('#comment_box').val('')
+          scroll_comments_list()
+        }
+      }
+    })
+  }
+</script>
+@endpush
+
 @endsection

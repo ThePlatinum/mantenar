@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShareController;
@@ -22,6 +23,8 @@ Route::middleware(['setup', 'auth'])->group(function () {
     Route::post('/make_newshare', 'store')->name('make_newshare');
     Route::get('/_/_/{slug}', 'show')->name('viewshare');
   });
+
+  Route::post('/send_comment', [CommentController::class, 'store'])->name('send_comment');
 });
 Auth::routes(['register' => false]);
 

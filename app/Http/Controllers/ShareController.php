@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Share;
 use App\Models\User;
 use App\Models\Viewer;
@@ -18,7 +19,6 @@ class ShareController extends Controller
    */
   public function index()
   {
-    //
     $users = User::where('id', '!=', Auth()->user()->id)->get();
     return view('newshare', compact('users'));
   }
@@ -65,7 +65,9 @@ class ShareController extends Controller
     $share = Share::where('slug', $slug)->first();
     if (!$share) return redirect()->back()->with('error', 'Invalid Request!');
 
-    return view('viewshare', compact('share'));
+    $comments = Comment::where('share_id', $share->id)->get();
+
+    return view('viewshare', compact('share', 'comments'));
   }
 
   /**
