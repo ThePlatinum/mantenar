@@ -43,7 +43,7 @@ class SettingController extends Controller
   }
 
   static function size_type($size) {
-    $calcSize = $size / 1000000; // 1048576 => 1024 1000000 => 1000
+    $calcSize = $size / 1048576; // 1048576 => 1024 1000000 => 1000
     if ($calcSize < 1) {
       $fileSize = round(($calcSize * 100000)) / 100;
       $type = 'Kb';
@@ -52,8 +52,8 @@ class SettingController extends Controller
       $fileSize = round(($calcSize * 100)) / 100;
       $type = 'Mb';
     }else {
-      $calcSize = $calcSize / 1000000; 
-      $fileSize = round(($calcSize * 100)) / 100;
+      $calcSize = $calcSize / 1024; 
+      $fileSize = round(($calcSize * 10)) / 10;
       $type = 'Gb';
     }
 
