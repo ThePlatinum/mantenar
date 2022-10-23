@@ -44,7 +44,7 @@ class User extends Authenticatable
   }
 
   public function recieved() {
-    return $this->hasManyThrough(Share::class, Viewer::class, 'user_id', 'id');
+    return $this->hasManyThrough(Share::class, Viewer::class, 'user_id', 'id', 'id', 'share_id');
   }
 
   public function getFullnameAttribute(){
