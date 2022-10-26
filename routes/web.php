@@ -30,6 +30,8 @@ Route::middleware(['setup', 'auth'])->group(function () {
   // TODO: write is_admin middleware for security
   Route::controller(InviteController::class)->group(function () {
     Route::get('/users', 'index')->name('staffs');
+    Route::post('/send_invite', 'store')->name('send_invite');
+    Route::get('/__invite/{invite_id}', 'accept')->name('invite');
   });
 });
 Auth::routes(['register' => false]);

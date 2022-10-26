@@ -14,8 +14,8 @@ return new class extends Migration
   public function up()
   {
     Schema::create('invites', function (Blueprint $table) {
+      $table->id();
       $table->string('invite_email');
-      $table->string('invite_signature');
       $table->timestamps();
     });
   }

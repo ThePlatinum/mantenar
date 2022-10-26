@@ -5,9 +5,9 @@
   <h1 class="pb-2 pb-md-3">Manage Users Access and Role</h1>
   <div class="bg-white p-4 r__10 mb-5">
 
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center pb-2">
       <h6>Pending Invites</h6>
-      <button class="btn btn__b_blue" data-bs-toggle="modal" data-bs-target="#inviteModal">
+      <button class="btn btn__b_blue px-5" data-bs-toggle="modal" data-bs-target="#inviteModal">
         Invite User
       </button>
     </div>
