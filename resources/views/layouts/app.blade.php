@@ -9,7 +9,7 @@
         <i class="bx bx-menu"></i>
         <div class="dropdown__content">
           <div class="dropdown__item">
-            <a href="" class="btn">Manage Staffs</a>
+            <a href="{{route('staffs')}}" class="btn">Manage Users</a>
           </div>
           <div class="dropdown__item">
             <a href="" class="btn">Settings</a>

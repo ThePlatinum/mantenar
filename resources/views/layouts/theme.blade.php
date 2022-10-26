@@ -20,11 +20,12 @@
     </div>
   </main>
 
-  <link href="{{ asset('util/bootstrap-5.1.3-slim/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('util/boxicons-2.1.4/boxicons.min.css') }}" rel="stylesheet">
   <link href="{{ asset('util/custom.css') }}" rel="stylesheet">
   <link href="{{ asset('util/multi-select/filter_multi_select.css') }}" rel="stylesheet">
+  <link href="{{ asset('util/bootstrap-5.1.3-slim/bootstrap.min.css') }}" rel="stylesheet">
 
+  <script src="{{ asset('util/bootstrap-5.1.3-slim/bootstrap.min.js') }}" ></script>
   <script src="{{ asset('util/jquery-3.6.0.js') }}" ></script>
   <script src="{{ asset('util/multi-select/filter-multi-select-bundle.min.js') }}" ></script>
   @stack('scripts')

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InviteController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShareController;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,11 @@ Route::middleware(['setup', 'auth'])->group(function () {
   });
 
   Route::post('/send_comment', [CommentController::class, 'store'])->name('send_comment');
+
+  // TODO: write is_admin middleware for security
+  Route::controller(InviteController::class)->group(function () {
+    Route::get('/users', 'index')->name('staffs');
+  });
 });
 Auth::routes(['register' => false]);
 

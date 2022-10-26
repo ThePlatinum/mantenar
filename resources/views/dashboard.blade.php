@@ -87,8 +87,8 @@
   <div class="col-md-6 pb-4 pb-md-0">
     <div class="r__10 p-3 bg-white">
       <h5>Sent</h5>
-      <div class="table-responsive nowrap">
-        <table class="table table-striped">
+      <div class="table-responsive">
+        <table class="table align-middle table-striped text-nowrap">
           <thead>
             <tr class="bg-light">
               <th scope="col">Document Name</th>
@@ -123,8 +123,8 @@
   <div class="col-md-6">
     <div class="r__10 p-3 bg-white">
       <h5>Shared with me</h5>
-      <div class="table-responsive nowrap">
-        <table class="table">
+      <div class="table-responsive">
+        <table class="table align-middle table-striped text-nowrap">
           <thead>
             <tr class="bg-light">
               <th scope="col">Document Name</th>
