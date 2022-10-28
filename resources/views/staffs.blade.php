@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('app_content')
 
-<div class="p-2 p-md-5 py-3">
+<div class="p-0 p-md-5 py-3">
   <h1 class="pb-2 pb-md-3">Manage Users Access and Role</h1>
-  <div class="bg-white p-4 r__10 mb-5">
+  <div class="bg-white p-3 p-md-4 r__10 mb-5">
 
     <div class="d-flex justify-content-between align-items-center pb-2">
-      <h6>Pending Invites</h6>
+      <h6 class="p-0 m-0">Pending Invites</h6>
       <button class="btn btn__b_blue px-5" data-bs-toggle="modal" data-bs-target="#inviteModal">
         Invite User
       </button>
@@ -42,8 +42,8 @@
     </div>
   </div>
 
-  <div class="bg-white p-4 r__10">
-    <h6>All Users</h6>
+  <div class="bg-white p-3 p-md-4 r__10">
+    <h6 class="p-0 m-0">All Users</h6>
     <div class="table-responsive">
       <table class="table align-middle table-striped text-nowrap">
         <thead>

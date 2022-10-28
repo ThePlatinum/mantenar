@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\Invite as MailInvite;
 use App\Models\Invite;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -39,17 +40,20 @@ class InviteController extends Controller
       $invite = Invite::create([
         'invite_email' => str_replace(' ', '', $keyemail)
       ]);
+      // TODO: Use Expiration
       $url = URL::signedRoute('invite', ['invite_id' => $invite->id]);
       Mail::to($keyemail)->send(new MailInvite($invite, $url));
     }
 
-    return redirect()->back()->with('success', 'File Shared Successfuly!');
+    return redirect()->back()->with('success', 'Invitation Sent Successfuly!');
   }
 
-  public function accept(Request $request)
+  public function accept($invite_id)
   {
-    if (!$request->hasValidSignature()) abort(401);
-
+    $org_name = Setting::org_name();
+    $invite = Invite::find($invite_id);
+    if (!$invite) return view('invite.expired');
+    return view('invite.accept', ['email' => $invite->invite_email, 'org_name' => $org_name, 'invite_id' => $invite_id]);
   }
 
   public function destroy(Request $request)

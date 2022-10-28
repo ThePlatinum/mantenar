@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invite;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -62,6 +63,24 @@ class RegisterController extends Controller
       : redirect($this->redirectPath());
   }
 
+
+  public function register(Request $request)
+  {
+    $this->validator($request->all())->validate();
+
+    event(new Registered($user = $this->create($request->all())));
+
+    $this->guard()->login($user);
+
+    if ($response = $this->registered($request, $user)) {
+      return $response;
+    }
+
+    return $request->wantsJson()
+      ? new JsonResponse([], 201)
+      : redirect($this->redirectPath());
+  }
+
   /**
    * Get a validator for an incoming registration request.
    *
@@ -87,13 +106,22 @@ class RegisterController extends Controller
    */
   protected function create(array $data)
   {
-    return User::create([
+    $invite = Invite::find($data['invite_id']);
+
+    if (!$invite || $invite->invite_email != $data['email']) abort(403, 'Please use the invited email only');
+
+    $user =  User::create([
       'firstname' => $data['firstname'],
       'lastname' => $data['lastname'],
       'job_title' => $data['job_title'],
       'email' => $data['email'],
+      'is_admin' => false,
       'password' => Hash::make($data['password']),
     ]);
+
+    if ($user) $invite->delete();
+
+    return $user;
   }
 
   protected function admin_create(array $data)

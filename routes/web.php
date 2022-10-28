@@ -31,7 +31,6 @@ Route::middleware(['setup', 'auth'])->group(function () {
   Route::controller(InviteController::class)->group(function () {
     Route::get('/users', 'index')->name('staffs');
     Route::post('/send_invite', 'store')->name('send_invite');
-    Route::get('/__invite/{invite_id}', 'accept')->name('invite');
   });
 });
 Auth::routes(['register' => false]);
@@ -43,4 +42,6 @@ Route::controller(SettingController::class)->group(function () {
   Route::get('/setup_administrator', 'setup_administrator')->name('setup_administrator');
 });
 
+Route::get('/__invite/{invite_id}', [InviteController::class, 'accept'])->name('invite')->middleware('signed');
 Route::post('/setup_administrator', [RegisterController::class, 'setup_administrator'])->name('setup_administrator');
+Route::post('/register_invite', [RegisterController::class, 'register'])->name('register_invite');

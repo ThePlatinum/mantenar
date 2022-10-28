@@ -91,8 +91,8 @@ body::-webkit-scrollbar-thumb {
 .dropdown__content {
   display: none;
   position: absolute;
-  top: 60px;
-  right: 200px;
+  top: 50px;
+  right: 120px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
