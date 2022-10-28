@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Routing\Exceptions\InvalidSignatureException;
 use Illuminate\Session\TokenMismatchException;
 use Throwable;
 
@@ -44,9 +45,9 @@ class Handler extends ExceptionHandler
    */
   public function register()
   {
-    $this->reportable(function (Throwable $e) {
-      //
-    });
+    // $this->reportable(function (InvalidSignatureException $e) {
+    //   return response()->view('invite.expired', [], 403);
+    // });
   }
 
   public function render($request, Throwable $exception)
@@ -54,6 +55,9 @@ class Handler extends ExceptionHandler
     if ($exception instanceof TokenMismatchException) {
       return redirect()->route('login');
       auth()->logout();
+    }
+    if ($exception instanceof InvalidSignatureException) {
+      return response()->view('invite.expired', [], 403);
     }
     // else {
     //     return redirect()
