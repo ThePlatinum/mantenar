@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InviteController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShareController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,12 @@ Route::middleware(['setup', 'auth'])->group(function () {
     Route::get('/users', 'index')->name('staffs');
     Route::post('/send_invite', 'store')->name('send_invite');
     Route::post('/delete_invite', 'destroy')->name('delete_invite');
+  });
+
+  Route::controller(UserController::class)->group(function () {
+    Route::post('/restore_user', 'restore')->name('restore_user');
+    Route::post('/pause_user', 'pause')->name('pause_user');
+    Route::post('/delete_user', 'destroy')->name('delete_user');
   });
 });
 Auth::routes(['register' => false]);

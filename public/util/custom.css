@@ -178,10 +178,8 @@ iframe.file__share {
   height: 90vh;
 }
 
-@media(max-width:500px) {
-  .mt__neg__ {
-    margin-top: -300px;
-  }
+.text__invisible {
+  color: transparent !important;
 }
 
 /* Custom Container */

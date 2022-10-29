@@ -18,7 +18,7 @@ class InviteController extends Controller
   public function index()
   {
     $invites = Invite::all();
-    $users = User::all()->sortByDesc('is_admin');
+    $users = User::withTrashed()->get()->sortByDesc('is_admin');
     return view('staffs', compact('users', 'invites'));
   }
 
@@ -58,7 +58,7 @@ class InviteController extends Controller
   {
     Invite::find($request->invite_id)->delete();
     
-    Session::flash('success', 'Account deleted successfully');
+    Session::flash('success', 'Invitation deleted!');
     return ;
   }
 }

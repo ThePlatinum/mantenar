@@ -62,10 +62,14 @@
             <td> {{$user->job_title}} </td>
             <td class="float__left gap-3">
               @if (auth()->user()->id != $user->id)
-              <a class="btn btn-outline-warning">Disable Account</a>
-              <a class="btn btn-outline-danger">Delete Account</a>
+              @if ($user->trashed())
+              <btn class="btn btn-outline-success" onclick="enable_user('{{$user->id}}')">Enable Account</btn>
               @else
-              <p></p>
+              <btn class="btn btn-outline-warning" onclick="disable_user('{{$user->id}}')">Disable Account</btn>
+              @endif
+              <btn class="btn btn-outline-danger" onclick="delete_user('{{$user->id}}')">Delete Account</btn>
+              @else
+              <p class="text__invisible">No Delete yourself</p>
               @endif
             </td>
           </tr>
@@ -85,19 +89,81 @@
       title: "Delete Invite?",
       message: "Are you sure you want to delete this invitation?",
       callback: e => {
+        if (e)
+          $.ajax({
+            url: "{{route('delete_invite')}}",
+            method: 'POST',
+            data: {
+              invite_id: user_id,
+              _token: '{{csrf_token()}}'
+            },
+            success: () => {
+              window.location.href = "users"
+            }
+          })
+      }
+    });
+  }
 
-        $.ajax({
-          url: "{{route('delete_invite')}}",
-          method: 'POST',
-          data: {
-            invite_id: user_id,
-            _token: '{{csrf_token()}}'
-          },
-          success: () => {
-            window.location.href = "users"
-          }
-        })
+  function disable_user(user_id) {
+    bootbox.confirm({
+      title: "Disable User's Account?",
+      message: "Disabling the Users Account will stop their access to the platform, but, all their shared files remain intact. <br/> Proceed?",
+      callback: e => {
+        if (e)
+          $.ajax({
+            url: "{{route('pause_user')}}",
+            method: 'POST',
+            data: {
+              user_id: user_id,
+              _token: '{{csrf_token()}}'
+            },
+            success: () => {
+              window.location.href = "users"
+            }
+          })
+      }
+    });
+  }
 
+  function enable_user(user_id) {
+    bootbox.confirm({
+      title: "Enable User's Account?",
+      message: "Enabling the Users Account will restore their access to the platform. <br/> Proceed?",
+      callback: e => {
+        if (e)
+          $.ajax({
+            url: "{{route('restore_user')}}",
+            method: 'POST',
+            data: {
+              user_id: user_id,
+              _token: '{{csrf_token()}}'
+            },
+            success: () => {
+              window.location.href = "users"
+            }
+          })
+      }
+    });
+  }
+
+  function delete_user(user_id) {
+    bootbox.confirm({
+      title: "Delete User's Account?",
+      message: "Are you sure you want to delete this 's account? All File share and activities will  This action is irrevesible. <br/> Proceed?",
+      callback: e => {
+        if (e)
+          $.ajax({
+            url: "{{route('delete_user')}}",
+            method: 'POST',
+            data: {
+              user_id: user_id,
+              _token: '{{csrf_token()}}'
+            },
+            success: () => {
+              window.location.href = "users"
+            }
+          })
       }
     });
   }
