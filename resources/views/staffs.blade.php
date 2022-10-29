@@ -18,6 +18,7 @@
           <tr class="bg-light">
             <th scope="col">Email</th>
             <th scope="col">Invited Since</th>
+            <th scope="col">Invite Status</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -26,6 +27,7 @@
           <tr>
             <td> {{$invite->invite_email}} </td>
             <td> {{ date_format($invite->created_at, 'd, M Y') }} </td>
+            <td> {{$invite->deleted_at < now() ? 'Expired' : 'Active'}} </td>
             <td class="float__left gap-3">
               <btn class="btn btn-outline-danger" onclick="delete_invite('{{$invite->id}}')">Delete Invite</btn>
             </td>
@@ -51,6 +53,7 @@
             <th scope="col">Full Name</th>
             <th scope="col">Role</th>
             <th scope="col">Title</th>
+            <th scope="col">Status</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -60,6 +63,7 @@
             <td> {{$user->fullname}} </td>
             <td> {{$user->is_admin ? 'Admin' : 'Staff'}} </td>
             <td> {{$user->job_title}} </td>
+            <td> {{$user->trashed() ? 'Disabled' : 'Enabled'}} </td>
             <td class="float__left gap-3">
               @if (auth()->user()->id != $user->id)
               @if ($user->trashed())

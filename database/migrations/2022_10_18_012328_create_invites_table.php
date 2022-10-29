@@ -16,6 +16,7 @@ return new class extends Migration
     Schema::create('invites', function (Blueprint $table) {
       $table->id();
       $table->string('invite_email');
+      $table->softDeletes();
       $table->timestamps();
     });
   }

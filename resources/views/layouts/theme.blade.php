@@ -49,7 +49,7 @@
   <script>
     setTimeout(function() {
       $(".alert").hide('medium');
-    }, 2000);
+    }, 3000);
   </script>
   @stack('scripts')
 </body>

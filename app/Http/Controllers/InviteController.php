@@ -17,7 +17,7 @@ class InviteController extends Controller
 {
   public function index()
   {
-    $invites = Invite::all();
+    $invites = Invite::withTrashed()->get();
     $users = User::withTrashed()->get()->sortByDesc('is_admin');
     return view('staffs', compact('users', 'invites'));
   }
@@ -35,7 +35,8 @@ class InviteController extends Controller
     // TODO: validate
     foreach($emails as $keyemail) {
       $invite = Invite::create([
-        'invite_email' => str_replace(' ', '', $keyemail)
+        'invite_email' => str_replace(' ', '', $keyemail),
+        'deleted_at' => now()->addDays(2)
       ]);
       $url = URL::temporarySignedRoute('invite', now()->addDays(2), ['invite_id' => $invite->id]);
       Mail::to($keyemail)->send(new MailInvite($invite, $url));
@@ -49,8 +50,8 @@ class InviteController extends Controller
     if (Auth::check()) return redirect()->route('dashboard');
 
     $org_name = Setting::org_name();
-    $invite = Invite::find($invite_id);
-    if (!$invite) return view('invite.expired');
+    $invite = Invite::withTrashed()->find($invite_id);
+    if (!$invite || $invite->deleted_at <= now()) return view('invite.expired');
     return view('invite.accept', ['email' => $invite->invite_email, 'org_name' => $org_name, 'invite_id' => $invite_id]);
   }
 
