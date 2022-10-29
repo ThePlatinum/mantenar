@@ -27,6 +27,7 @@
   <script src="{{ asset('util/bootstrap-5.1.3-slim/bootstrap.min.js') }}" ></script>
   <script src="{{ asset('util/jquery-3.6.0.js') }}" ></script>
   <script src="{{ asset('util/multi-select/filter-multi-select-bundle.min.js') }}" ></script>
+  <script src="{{ asset('util/bootbox.min.js') }}" ></script>
   
   <link href="{{ asset('util/custom.css') }}" rel="stylesheet">
   @stack('scripts')

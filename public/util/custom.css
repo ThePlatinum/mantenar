@@ -199,3 +199,9 @@ iframe.file__share {
   flex-direction: row-reverse;
   margin-left: auto;
 }
+
+/* Bootboxjs */
+.bootbox-close-button {
+  background-color: transparent;
+  border: none;
+}
