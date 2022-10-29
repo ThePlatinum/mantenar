@@ -31,6 +31,7 @@ Route::middleware(['setup', 'auth'])->group(function () {
   Route::controller(InviteController::class)->group(function () {
     Route::get('/users', 'index')->name('staffs');
     Route::post('/send_invite', 'store')->name('send_invite');
+    Route::post('/delete_invite', 'destroy')->name('delete_invite');
   });
 });
 Auth::routes(['register' => false]);

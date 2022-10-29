@@ -7,17 +7,14 @@ use App\Models\Invite;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 class InviteController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
   public function index()
   {
     $invites = Invite::all();
@@ -40,8 +37,7 @@ class InviteController extends Controller
       $invite = Invite::create([
         'invite_email' => str_replace(' ', '', $keyemail)
       ]);
-      // TODO: Use Expiration
-      $url = URL::signedRoute('invite', ['invite_id' => $invite->id]);
+      $url = URL::temporarySignedRoute('invite', now()->addDays(2), ['invite_id' => $invite->id]);
       Mail::to($keyemail)->send(new MailInvite($invite, $url));
     }
 
@@ -50,6 +46,8 @@ class InviteController extends Controller
 
   public function accept($invite_id)
   {
+    if (Auth::check()) return redirect()->route('dashboard');
+
     $org_name = Setting::org_name();
     $invite = Invite::find($invite_id);
     if (!$invite) return view('invite.expired');
@@ -58,7 +56,10 @@ class InviteController extends Controller
 
   public function destroy(Request $request)
   {
-    //
+    Invite::find($request->invite_id)->delete();
+    
+    Session::flash('success', 'Account deleted successfully');
+    return ;
   }
 }
 

@@ -27,7 +27,7 @@
             <td> {{$invite->invite_email}} </td>
             <td> {{ date_format($invite->created_at, 'd, M Y') }} </td>
             <td class="float__left gap-3">
-              <a class="btn btn-outline-danger">Delete Invite</a>
+              <btn class="btn btn-outline-danger" onclick="delete_invite('{{$invite->id}}')">Delete Invite</btn>
             </td>
           </tr>
           @empty
@@ -79,6 +79,29 @@
 </div>
 
 @push('scripts')
+<script>
+  function delete_invite(user_id) {
+    bootbox.confirm({
+      title: "Delete Invite?",
+      message: "Are you sure you want to delete this invitation?",
+      callback: e => {
+
+        $.ajax({
+          url: "{{route('delete_invite')}}",
+          method: 'POST',
+          data: {
+            invite_id: user_id,
+            _token: '{{csrf_token()}}'
+          },
+          success: () => {
+            window.location.href = "users"
+          }
+        })
+
+      }
+    });
+  }
+</script>
 @endpush
 
 @endsection
