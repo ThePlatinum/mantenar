@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+
 :root {
   /* Colors */
   --brand-pink: #EF5DA8;
@@ -7,17 +8,20 @@
   --brand-blue-light: #080A4120;
   --background-color: #EFEFEF;
   --bs-gutter-x: 0.5rem;
-    /* Sizes */
+  /* Sizes */
   --scrollbar-width: 2.2px;
 }
+
 * {
   font-family: 'PT Sans Narrow', sans-serif;
   transition: 0.3s all ease;
 }
+
 html,
 body {
   background-color: var(--background-color) !important;
 }
+
 a {
   text-decoration: none;
 }
@@ -40,44 +44,55 @@ body::-webkit-scrollbar-thumb {
 .r__10 {
   border-radius: 10px !important;
 }
+
 .bg__blue {
   background-color: var(--brand-blue);
 }
+
 .b__b {
   color: var(--brand-blue);
 }
+
 .b__p {
   color: var(--brand-pink);
 }
+
 .min_vh_50 {
   min-height: 50vh;
 }
+
 .mt__neg__ {
   margin-top: -220px;
 }
+
 .ml__neg__ {
   margin-left: -10vw;
 }
+
 .btn__b_blue {
   color: white !important;
   background-color: var(--brand-blue) !important;
   border-color: var(--brand-blue) !important;
 }
+
 .btn__b_blue:hover {
   color: var(--brand-blue) !important;
   background-color: white !important;
   border-color: var(--brand-blue) !important;
 }
+
 .btn__b_outline_blue {
   color: var(--brand-blue);
   background-color: white;
   border-color: var(--brand-blue);
 }
+
 .btn__b_outline_blue:hover {
   color: white;
   background-color: var(--brand-blue);
   border-color: var(--brand-blue);
 }
+
 .setup_input {
   border: 0;
   border-radius: 0;
@@ -85,9 +100,11 @@ body::-webkit-scrollbar-thumb {
   font-size: large;
   margin: 1rem 0;
 }
+
 .brand__ {
   height: 45px;
 }
+
 .dropdown__content {
   display: none;
   position: absolute;
@@ -100,15 +117,19 @@ body::-webkit-scrollbar-thumb {
   z-index: 100;
   text-align: left;
 }
+
 .__dropdown:hover .dropdown__content {
   display: block !important;
 }
+
 .dropdown__item {
   padding: 0 1rem;
 }
+
 .dropdown__item:hover {
   background-color: var(--background-color);
 }
+
 .__icon {
   padding: 5px;
   border-radius: 50%;
@@ -121,20 +142,24 @@ body::-webkit-scrollbar-thumb {
   font-size: 20px;
   font-weight: 200 !important;
 }
+
 .__count {
   font-size: 50px;
   padding: 0;
   margin: 0;
 }
+
 .float__left {
   display: flex;
   justify-content: end;
 }
+
 .file__share {
   width: 100%;
   max-height: 100vh;
   object-fit: contain;
 }
+
 .dropbox {
   border: 1px dashed #CCC;
   padding: 3vh 5vw;
@@ -142,20 +167,23 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
   background-color: #EEE5;
 }
+
 .filbox {
   border: 1px dashed #CCC;
   border-radius: 10px;
   background-color: #EEE5;
 }
+
 iframe.file__share {
   height: 90vh;
 }
+
 @media(max-width:500px) {
-    .mt__neg__ {
+  .mt__neg__ {
     margin-top: -300px;
   }
 }
-  
+
 /* Custom Container */
 .container {
   max-width: 96%;
@@ -167,18 +195,22 @@ iframe.file__share {
   overflow-y: auto;
   padding: 1vh 0;
 }
+
 .__comments::-webkit-scrollbar {
   width: var(--scrollbar-width);
 }
+
 .__comments::-webkit-scrollbar-track {
   border-radius: var(--scrollbar-width);
   background-color: #CCC;
   margin: 25px 0;
 }
+
 .__comments::-webkit-scrollbar-thumb {
   border-radius: var(--scrollbar-width);
   background-color: #AAA;
 }
+
 .comment__left,
 .comment__right {
   display: flex;
@@ -186,15 +218,19 @@ iframe.file__share {
   max-width: 75% !important;
   margin-bottom: 1vh;
 }
+
 .comment__left {
   margin-right: auto;
 }
+
 .comment__right .bg-me {
   background-color: var(--brand-blue-light) !important;
 }
+
 .comment__left .bg-me {
   background-color: var(--brand-pink-light) !important;
 }
+
 .comment__right {
   flex-direction: row-reverse;
   margin-left: auto;
@@ -204,4 +240,27 @@ iframe.file__share {
 .bootbox-close-button {
   background-color: transparent;
   border: none;
+}
+
+/* Alert */
+.alert {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  max-width: 50vw;
+}
+.alert .btn-close {
+  font-size: x-small;
+}
+
+@media(max-width:500px) {
+  .mt__neg__ {
+    margin-top: -300px;
+  }
+  .alert {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    max-width: 90vw;
+  }
 }
