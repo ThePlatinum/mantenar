@@ -2,84 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Share;
+use App\Models\User;
 use App\Models\Viewer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ViewerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+  public function store(Request $request)
+  {
+    $share = Share::find($request->share_id);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    if ($share) {
+      foreach ($request->viewers as $key => $value) {
+        if (User::find($value)) Viewer::create([
+          'share_id' => $share->id,
+          'user_id' => $value
+        ]);
+      }
+    return redirect()->back()->with('success', 'Viewers Added Successfuly!');
     }
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  public function destroy(Request $request)
+  {
+    $share = Share::find($request->share_id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Viewer  $viewer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Viewer $viewer)
-    {
-        //
+    if ($share) {
+      Viewer::where('share_id', $share->id)->where('user_id', $request->user_id)->first()->delete();
+      return Session::flash('success', 'Viewers Removed Successfuly!');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Viewer  $viewer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Viewer $viewer)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Viewer  $viewer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Viewer $viewer)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Viewer  $viewer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Viewer $viewer)
-    {
-        //
-    }
+  }
 }

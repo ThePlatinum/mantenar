@@ -8,6 +8,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShareController;
 use App\Http\Controllers\TrailController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViewerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,11 @@ Route::middleware(['setup', 'auth'])->group(function () {
     Route::post('/restore_user', 'restore')->name('restore_user');
     Route::post('/pause_user', 'pause')->name('pause_user');
     Route::post('/delete_user', 'destroy')->name('delete_user');
+  });
+
+  Route::controller(ViewerController::class)->group(function () {
+    Route::post('/grant_access', 'store')->name('give_access');
+    Route::post('/remove_access', 'destroy')->name('remove_access');
   });
 });
 Auth::routes(['register' => false]);

@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-md-9 pb-3 pb-md-0">
           <h2> {{$share->name}} </h2>
-          <h5>Shared by <b>{{$share->owner->fullname}}</b> with {{$share->viewers[0]->fullname}}
+          <h5>Shared by <b>{{$share->owner->fullname}}</b> {{ $share->viewers->count() > 0 ? 'with '. $share->viewers[0]->fullname : '' }}
             @if ($share->viewers->count() > 1)
             <span class="__others">+{{$share->viewers->count()-1}} others</span>
             @endif
@@ -18,7 +18,10 @@
           <div class="d-flex gap-2 flex-md-column ">
             <a href="{{$share->file_url}}" download="{{\Str::slug($share->name, '_')}}" class="btn btn__b_outline_blue btn-sm">Download</a>
             @if ($share->owner == auth()->user() || auth()->user()->is_admin)
-            <a href="" class="btn btn__b_outline_blue btn-sm">Edit Access</a>
+            <button class="btn btn__b_outline_blue btn-sm" data-bs-toggle="modal" data-bs-target="#editAccessModal">
+              Edit Viewers
+            </button>
+            @include('modals.fileaccess')
             @endif
           </div>
         </div>
@@ -61,7 +64,7 @@
           <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3 bg-me">
             {{$comment->body}}
             <div class="text-muted small text-nowrap">
-              <small> @if ($comment->author_user_id != Auth()->user()->id) {{$comment->sender_name}} <br>  @endif {{$comment->date.' | '.$comment->time }}</small>
+              <small> @if ($comment->author_user_id != Auth()->user()->id) {{$comment->sender_name}} <br> @endif {{$comment->date.' | '.$comment->time }}</small>
             </div>
           </div>
         </div>
@@ -122,6 +125,38 @@
         }
       }
     })
+  }
+
+  try {
+    const viewrs = $('#viewers').filterMultiSelect({
+      placeholderText: "Select Viewers",
+      filterText: "Search",
+      selectAllText: "Select All",
+      labelText: "",
+      caseSensitive: false,
+    })
+  } catch (error) {}
+
+  function remove_access(user_id) {
+    bootbox.confirm({
+      title: "Remove Viewer?",
+      message: "This user will no longer have access to this file share. <br/> <br/> Proceed?",
+      callback: e => {
+        if (e)
+          $.ajax({
+            url: "{{route('remove_access')}}",
+            method: 'POST',
+            data: {
+              user_id: user_id,
+              share_id: '{{$share->id}}',
+              _token: '{{csrf_token()}}'
+            },
+            success: () => {
+              window.location.href = "{{$share->slug}}"
+            }
+          })
+      }
+    });
   }
 </script>
 @endpush

@@ -15,7 +15,7 @@
 
 ## Incoming/Possible Features
 - User Edit (Roles, Name)
-- Edit File User Access
+- Improved User Interaction and Content
 - Settings Page
 - Super Admin Account?
 - Google Integration for Easy Email
@@ -26,6 +26,13 @@
 - Auto Deleting Files
 - Add a Mobile App
 - Error/Performance Monitoring
+- Other Integrations such as FTP and FileZilla
+- Private Staff Account Email System
+
+## Non Default Packages used
+- laravel/ui
+- bootstrap
+- bootbox
 
 ## License
 Mantenar is open-sourced and licensed under the [MIT license](https://opensource.org/licenses/MIT).

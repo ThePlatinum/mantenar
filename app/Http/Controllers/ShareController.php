@@ -33,11 +33,11 @@ class ShareController extends Controller
     ]);
 
     if ($validate->fails())
-    return redirect()->back()->withErrors($validate->errors())->withInput();
+      return redirect()->back()->withErrors($validate->errors())->withInput();
 
     $slug = now()->getTimestamp();
     $the_file = $request->file("file");
-    $_file = $the_file->storeAs('shared_files', $slug.'.'.$the_file->getClientOriginalExtension() );
+    $_file = $the_file->storeAs('shared_files', $slug . '.' . $the_file->getClientOriginalExtension());
     $share = Share::create([
       'file' => $_file,
       'name' => $request->name,
@@ -59,15 +59,18 @@ class ShareController extends Controller
 
     return redirect()->route('viewshare', $slug)->with('success', 'File Shared Successfuly!');
   }
-  
+
   public function show($slug)
   {
     $share = Share::where('slug', $slug)->first();
     if (!$share) return redirect()->back()->with('error', 'Invalid Request!');
 
     $comments = Comment::where('share_id', $share->id)->get();
+    
+    $already_ = $share->viewers->pluck('id');
+    $users = User::where('id', '!=', Auth()->user()->id)->whereNotIn('id', $already_)->get();
 
-    return view('viewshare', compact('share', 'comments'));
+    return view('viewshare', compact('share', 'comments', 'users'));
   }
 
   /**
