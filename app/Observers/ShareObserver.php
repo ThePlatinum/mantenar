@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Share;
+use App\Models\Trail;
 
 class ShareObserver
 {
@@ -15,6 +16,10 @@ class ShareObserver
   public function created(Share $share)
   {
     //
+    Trail::create([
+      'action' => "Shared a new file '" . $share->name . "' with " . $share->viewers->count() . " users",
+      'author_user_id' => Auth()->user()->id
+    ]);
   }
 
   /**
@@ -36,7 +41,10 @@ class ShareObserver
    */
   public function deleted(Share $share)
   {
-    //
+    Trail::create([
+      'action' => "Deleted file '" . $share->name . "'",
+      'author_user_id' => Auth()->user()->id
+    ]);
   }
 
   /**
@@ -58,6 +66,9 @@ class ShareObserver
    */
   public function forceDeleted(Share $share)
   {
-    //
+    Trail::create([
+      'action' => "Deleted file '" . $share->name . "'",
+      'author_user_id' => Auth()->user()->id
+    ]);
   }
 }

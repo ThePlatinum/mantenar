@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,6 +15,11 @@ class User extends Authenticatable
 {
   use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+
+  public static function boot(){
+    parent::boot();
+    parent::observe(new UserObserver);
+  }
   /**
    * The attributes that are mass assignable.
    *

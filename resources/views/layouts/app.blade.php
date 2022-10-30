@@ -12,6 +12,9 @@
             <a href="{{route('staffs')}}" class="btn">Manage Users</a>
           </div>
           <div class="dropdown__item">
+            <a href="{{route('trail')}}" class="btn">Audit Trail</a>
+          </div>
+          <div class="dropdown__item">
             <a href="" class="btn">Settings</a>
           </div>
         </div>

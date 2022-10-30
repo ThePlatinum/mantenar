@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InviteController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShareController;
+use App\Http\Controllers\TrailController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::middleware(['setup', 'auth'])->group(function () {
   });
 
   Route::post('/send_comment', [CommentController::class, 'store'])->name('send_comment');
+  Route::get('/trails', [TrailController::class, 'index'])->name('trail');
 
   // TODO: write is_admin middleware for security
   Route::controller(InviteController::class)->group(function () {
