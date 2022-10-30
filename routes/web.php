@@ -30,20 +30,20 @@ Route::middleware(['setup', 'auth'])->group(function () {
   Route::post('/send_comment', [CommentController::class, 'store'])->name('send_comment');
   Route::get('/trails', [TrailController::class, 'index'])->name('trail');
 
-  // TODO: write is_admin middleware for security
+  Route::middleware(['admin'])->group(function () {
+    Route::get('/all_files', [ShareController::class, 'all'])->name('all_files');
 
-  Route::get('/all_files', [ShareController::class, 'all'])->name('all_files');
+    Route::controller(InviteController::class)->group(function () {
+      Route::get('/users', 'index')->name('staffs');
+      Route::post('/send_invite', 'store')->name('send_invite');
+      Route::post('/delete_invite', 'destroy')->name('delete_invite');
+    });
 
-  Route::controller(InviteController::class)->group(function () {
-    Route::get('/users', 'index')->name('staffs');
-    Route::post('/send_invite', 'store')->name('send_invite');
-    Route::post('/delete_invite', 'destroy')->name('delete_invite');
-  });
-
-  Route::controller(UserController::class)->group(function () {
-    Route::post('/restore_user', 'restore')->name('restore_user');
-    Route::post('/pause_user', 'pause')->name('pause_user');
-    Route::post('/delete_user', 'destroy')->name('delete_user');
+    Route::controller(UserController::class)->group(function () {
+      Route::post('/restore_user', 'restore')->name('restore_user');
+      Route::post('/pause_user', 'pause')->name('pause_user');
+      Route::post('/delete_user', 'destroy')->name('delete_user');
+    });
   });
 
   Route::controller(ViewerController::class)->group(function () {

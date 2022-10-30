@@ -11,7 +11,12 @@
 - Multiple File type support
 
 ## Using Mantenar
-
+- Clone/Download/Fork the repo
+- Run `composer install`
+- Run `cp .env.example .env`
+- Edit the `.env` file accordingly
+- Run `php artisan key:generate`
+- Run `php artisan serve`
 
 ## Incoming/Possible Features
 - User Edit (Roles, Name)
@@ -31,8 +36,11 @@
 
 ## Non Default Packages used
 - laravel/ui
+- jQuery
 - bootstrap
+- multi-select
 - bootbox
+- boxicon
 
 ## License
 Mantenar is open-sourced and licensed under the [MIT license](https://opensource.org/licenses/MIT).
