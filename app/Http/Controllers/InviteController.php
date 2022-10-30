@@ -6,6 +6,7 @@ use App\Mail\Invite as MailInvite;
 use App\Models\Invite;
 use App\Models\Setting;
 use App\Models\User;
+use App\Rules\AllEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -24,25 +25,26 @@ class InviteController extends Controller
 
   public function store(Request $request)
   {
-    $validate = Validator::make(explode(',', $request->invite_email), [
-      'invite_email' => 'required',
+    $validate = Validator::make($request->all(), [
+      'invite_email' => ['required', new AllEmail],
     ]);
 
-    // if ($validate->fails()) return ;
-    // return redirect()->back()->withErrors($validate->errors())->withInput();
+    if ($validate->fails()) return redirect()->back()->with('invite_error', $validate->errors()->first());
 
     $emails = explode(',', $request->invite_email);
-    // TODO: validate
     foreach($emails as $keyemail) {
       $invite = Invite::create([
         'invite_email' => str_replace(' ', '', $keyemail),
         'deleted_at' => now()->addDays(2)
       ]);
       $url = URL::temporarySignedRoute('invite', now()->addDays(2), ['invite_id' => $invite->id]);
-      Mail::to($keyemail)->send(new MailInvite($invite, $url));
+      try {
+        Mail::to($keyemail)->send(new MailInvite($invite, $url));
+        return redirect()->back()->with('success', 'Invitation Sent Successfuly!');
+      } catch (\Throwable $th) {
+        return redirect()->back()->with('error', 'Error Occured while Sending Invite Link!');
+      }
     }
-
-    return redirect()->back()->with('success', 'Invitation Sent Successfuly!');
   }
 
   public function accept($invite_id)
@@ -57,17 +59,9 @@ class InviteController extends Controller
 
   public function destroy(Request $request)
   {
-    Invite::find($request->invite_id)->delete();
+    Invite::withTrashed()->find($request->invite_id)->forceDelete();
     
     Session::flash('success', 'Invitation deleted!');
     return ;
   }
 }
-
-// @if(isset(old('modal'))
-//     <script>
-//         $(window).load(function(){
-//            $(#{{ old('modal') }}).modal(\'show\');
-//         });
-//     </script>
-//   @endif 

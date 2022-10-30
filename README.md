@@ -18,13 +18,14 @@
 - Edit File User Access
 - Settings Page
 - Super Admin Account?
-- Custom Validation
 - Google Integration for Easy Email
 - Sending Action Emails
 - File Viewers with no Accounts
 - Disable/Enable Download Option
 - Temporary File Access
 - Auto Deleting Files
+- Add a Mobile App
+- Error/Performance Monitoring
 
 ## License
 Mantenar is open-sourced and licensed under the [MIT license](https://opensource.org/licenses/MIT).

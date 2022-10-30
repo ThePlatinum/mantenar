@@ -171,6 +171,10 @@
       }
     });
   }
+
+  if ("{{Session::has('invite_error')}}") $(document).ready(function() {
+    $('#inviteModal').modal('show')
+  });
 </script>
 @endpush
 
