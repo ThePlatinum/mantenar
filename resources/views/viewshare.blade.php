@@ -35,6 +35,10 @@
       @case('pdf')
       <iframe src="{{$share->file_url}}" class="file__share">Your browser isn't compatible with this file type download the file and open locally on your device</iframe>
       @break
+      @case('mp4')
+      @case('mkv')
+      <video src="{{$share->file_url}}" class="file__share" controls>Your browser isn't compatible with this file type download the file and open locally on your device</video>
+      @break
       @default
       <div class="file__share p-5 text-center"> Can't display file type </div>
       @endswitch
