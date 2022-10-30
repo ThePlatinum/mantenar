@@ -66,22 +66,16 @@ class ShareController extends Controller
     if (!$share) return redirect()->back()->with('error', 'Invalid Request!');
 
     $comments = Comment::where('share_id', $share->id)->get();
-    
+
     $already_ = $share->viewers->pluck('id');
     $users = User::where('id', '!=', Auth()->user()->id)->whereNotIn('id', $already_)->get();
 
     return view('viewshare', compact('share', 'comments', 'users'));
   }
-
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\Share  $share
-   * @return \Illuminate\Http\Response
-   */
-  public function edit(Share $share)
+  
+  public function all()
   {
-    //
+    return view('all_share', ['all'=> Share::all()]);
   }
 
   /**

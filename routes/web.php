@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
 */
 
 Route::middleware(['setup', 'auth'])->group(function () {
@@ -32,6 +31,9 @@ Route::middleware(['setup', 'auth'])->group(function () {
   Route::get('/trails', [TrailController::class, 'index'])->name('trail');
 
   // TODO: write is_admin middleware for security
+
+  Route::get('/all_files', [ShareController::class, 'all'])->name('all_files');
+
   Route::controller(InviteController::class)->group(function () {
     Route::get('/users', 'index')->name('staffs');
     Route::post('/send_invite', 'store')->name('send_invite');

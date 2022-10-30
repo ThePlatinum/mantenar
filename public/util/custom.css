@@ -109,7 +109,7 @@ body::-webkit-scrollbar-thumb {
   display: none;
   position: absolute;
   top: 50px;
-  right: 120px;
+  right: 150px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -118,7 +118,7 @@ body::-webkit-scrollbar-thumb {
   text-align: left;
 }
 
-.__dropdown:hover .dropdown__content {
+.__dropdown:hover .dropdown__content, .__dropdown:focus .dropdown__content {
   display: block !important;
 }
 

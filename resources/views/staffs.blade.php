@@ -47,13 +47,14 @@
   <div class="bg-white p-3 p-md-4 r__10">
     <h6 class="p-0 m-0">All Users</h6>
     <div class="table-responsive">
-      <table class="table align-middle table-striped text-nowrap">
+      <table data-toggle="table" data-search="true" data-sortable="true"  data-pagination="true"
+        class="table align-middle table-striped text-nowrap">
         <thead>
           <tr class="bg-light">
-            <th scope="col">Full Name</th>
-            <th scope="col">Role</th>
-            <th scope="col">Title</th>
-            <th scope="col">Status</th>
+            <th scope="col" data-sortable="true">Full Name</th>
+            <th scope="col" data-sortable="true">Role</th>
+            <th scope="col" data-sortable="true">Title</th>
+            <th scope="col" data-sortable="true">Status</th>
             <th scope="col"></th>
           </tr>
         </thead>

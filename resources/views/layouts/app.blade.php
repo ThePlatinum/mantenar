@@ -9,6 +9,9 @@
         <i class="bx bx-menu"></i>
         <div class="dropdown__content">
           <div class="dropdown__item">
+            <a href="{{route('all_files')}}" class="btn">All Shared Files</a>
+          </div>
+          <div class="dropdown__item">
             <a href="{{route('staffs')}}" class="btn">Manage Users</a>
           </div>
           <div class="dropdown__item">
@@ -21,6 +24,11 @@
       </button>
       @endadmin
       <a href="{{route('newshare')}}" class="btn btn-outline-light px-4">New Share</a>
+      @if(!request()->routeIs('dashboard'))
+      <a href="{{route('dashboard')}}" class="btn btn-outline-light">
+        <i class='bx bxs-home'></i>
+      </a>
+      @endif
       <a class="btn btn-outline-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="bx bx-log-out"></i>
       </a>
