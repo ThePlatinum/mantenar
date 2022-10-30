@@ -261,4 +261,10 @@ iframe.file__share {
     right: 10px;
     max-width: 90vw;
   }
+
+  .dropdown__content {
+    top: 60px;
+    right: 50px;
+  }
+  
 }
