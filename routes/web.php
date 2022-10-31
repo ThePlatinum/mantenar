@@ -40,6 +40,7 @@ Route::middleware(['setup', 'auth'])->group(function () {
     });
 
     Route::controller(UserController::class)->group(function () {
+      Route::post('/edit_user', 'edit')->name('edit_user');
       Route::post('/restore_user', 'restore')->name('restore_user');
       Route::post('/pause_user', 'pause')->name('pause_user');
       Route::post('/delete_user', 'destroy')->name('delete_user');

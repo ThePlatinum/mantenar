@@ -47,8 +47,7 @@
   <div class="bg-white p-3 p-md-4 r__10">
     <h6 class="p-0 m-0">All Users</h6>
     <div class="table-responsive">
-      <table data-toggle="table" data-search="true" data-sortable="true"  data-pagination="true"
-        class="table align-middle table-striped text-nowrap">
+      <table data-toggle="table" data-search="true" data-sortable="true" data-pagination="true" class="table align-middle table-striped text-nowrap">
         <thead>
           <tr class="bg-light">
             <th scope="col" data-sortable="true">Full Name</th>
@@ -67,12 +66,14 @@
             <td> {{$user->trashed() ? 'Disabled' : 'Enabled'}} </td>
             <td class="float__left gap-3">
               @if (auth()->user()->id != $user->id)
+              <btn class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editUserModal{{$user->id}}">Edit</btn>
+              @include('modals.edituser')
               @if ($user->trashed())
-              <btn class="btn btn-outline-success" onclick="enable_user('{{$user->id}}')">Enable Account</btn>
+              <btn class="btn btn-outline-success" onclick="enable_user('{{$user->id}}')">Enable</btn>
               @else
-              <btn class="btn btn-outline-warning" onclick="disable_user('{{$user->id}}')">Disable Account</btn>
+              <btn class="btn btn-outline-warning" onclick="disable_user('{{$user->id}}')">Disable</btn>
               @endif
-              <btn class="btn btn-outline-danger" onclick="delete_user('{{$user->id}}')">Delete Account</btn>
+              <btn class="btn btn-outline-danger" onclick="delete_user('{{$user->id}}')">Delete</btn>
               @else
               <p class="text__invisible">No Delete yourself</p>
               @endif
@@ -175,6 +176,10 @@
 
   if ("{{Session::has('invite_error')}}") $(document).ready(function() {
     $('#inviteModal').modal('show')
+  });
+
+  if ("{{Session::has('editError')}}") $(document).ready(function() {
+    $("#editUserModal{{Session::get('editError')}}").modal('show')
   });
 </script>
 @endpush
