@@ -11,6 +11,7 @@
 - Multiple File type support
 
 ## Using Mantenar
+I provide full technical support for setting up and using Mantener, but, if you have the know how, then:
 - Clone/Download/Fork the repo
 - Run `composer install`
 - Run `cp .env.example .env`
@@ -19,7 +20,6 @@
 - Run `php artisan serve`
 
 ## Incoming/Possible Features
-- User Edit (Roles, Name)
 - Improved User Interaction and Content
 - Settings Page
 - Super Admin Account?
