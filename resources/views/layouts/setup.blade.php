@@ -1,7 +1,7 @@
 @extends('layouts.theme')
 @section('content')
-<div id="setup">
-  <div class="bg__blue r__10 p-4 min_vh_50">
+<div id="setup" class="__setup">
+  <div class="bg__blue r__10 p-4 p-md-5 min_vh_50">
     <img src="{{ asset('images/mantenar_logo.svg') }}" alt="Mantenar Logo">
   </div>
   <div class="row d-flex justify-content-center">

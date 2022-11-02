@@ -93,6 +93,10 @@ body::-webkit-scrollbar-thumb {
   border-color: var(--brand-blue);
 }
 
+.__setup{
+  max-width: 80%;
+  margin: auto;
+}
 .setup_input {
   border: 0;
   border-radius: 0;
@@ -265,6 +269,11 @@ iframe.file__share {
   .dropdown__content {
     top: 60px;
     right: 50px;
+  }
+
+  .__setup{
+    max-width: 100%;
+    margin: auto;
   }
   
 }
