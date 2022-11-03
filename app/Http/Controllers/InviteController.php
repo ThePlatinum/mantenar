@@ -40,11 +40,11 @@ class InviteController extends Controller
       $url = URL::temporarySignedRoute('invite', now()->addDays(2), ['invite_id' => $invite->id]);
       try {
         Mail::to($keyemail)->send(new MailInvite($invite, $url));
-        return redirect()->back()->with('success', 'Invitation Sent Successfuly!');
       } catch (\Throwable $th) {
         return redirect()->back()->with('error', 'Error Occured while Sending Invite Link!');
       }
     }
+    return redirect()->back()->with('success', 'Invitation Sent Successfuly!');
   }
 
   public function accept($invite_id)

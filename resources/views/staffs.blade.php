@@ -34,7 +34,7 @@
           </tr>
           @empty
           <tr>
-            <td colspan="3" class="text-center p-3">
+            <td colspan="4" class="text-center p-3">
               You currently have no pending invites.
             </td>
           </tr>

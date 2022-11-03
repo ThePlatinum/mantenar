@@ -47,7 +47,7 @@
     </div>
 
     <div class="col-md-6">
-      <input class="form-control setup_input @error('password') is-invalid @enderror" autocomplete name="password" id="password" placeholder="Choose Password" required>
+      <input type="password" class="form-control setup_input @error('password') is-invalid @enderror" autocomplete name="password" id="password" placeholder="Choose Password" required>
       @error('password')
       <span class="invalid-feedback" role="alert">
         <strong>{{ $message }}</strong>

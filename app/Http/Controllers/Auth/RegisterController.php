@@ -106,7 +106,7 @@ class RegisterController extends Controller
    */
   protected function create(array $data)
   {
-    $invite = Invite::find($data['invite_id']);
+    $invite = Invite::withTrashed()->find($data['invite_id']);
 
     if (!$invite || $invite->invite_email != $data['email']) abort(403, 'Please use the invited email only');
 
@@ -119,7 +119,7 @@ class RegisterController extends Controller
       'password' => Hash::make($data['password']),
     ]);
 
-    if ($user) $invite->delete();
+    if ($user) $invite->forceDelete();
 
     return $user;
   }

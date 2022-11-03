@@ -22,8 +22,8 @@ class AllEmail implements InvokableRule
       foreach ($emails as $keyemail) {
         if ( !filter_var( str_replace(' ', '', $keyemail) , FILTER_VALIDATE_EMAIL) )
           $fail('All entries must be an email');
-        if ( User::withTrashed()->where('email', str_replace(' ', '', $keyemail))->get() )
-          $fail('You can not invite an exiting user email');
+        if ( User::withTrashed()->where('email', str_replace(' ', '', $keyemail))->get()->count() > 0 )
+          $fail('You can not invite an exiting user');
       }
     }
 }
