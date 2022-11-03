@@ -6,7 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ config('app.name', 'Mantenar') }}</title>
+  <meta name="author" content="Emmanuel Adesina"></meta>
+  <meta name="description" content="Software  to keep organization file share secure and unbounded"></meta>
   <link rel="icon" type="images/mantenar.svg" href="{{ asset('images/mantenar.svg') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" defer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous" defer></script>
 </head>
 
 <body>
@@ -45,11 +49,9 @@
 
   <link href="{{ asset('util/boxicons-2.1.4/boxicons.min.css') }}" rel="stylesheet">
   <link href="{{ asset('util/multi-select/filter_multi_select.css') }}" rel="stylesheet">
-  <link href="{{ asset('util/bootstrap-5.1.3-slim/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('util/bootstrap-5.1.3-slim/bootstrap-table.min.css') }}" rel="stylesheet">
 
-  <script src="{{ asset('util/bootstrap-5.1.3-slim/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('util/jquery-3.6.0.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
   <script src="{{ asset('util/bootstrap-5.1.3-slim/bootstrap-table.min.js') }}"></script>
   <script src="{{ asset('util/multi-select/filter-multi-select-bundle.min.js') }}"></script>
   <script src="{{ asset('util/bootbox.min.js') }}"></script>
