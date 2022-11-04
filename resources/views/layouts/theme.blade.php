@@ -57,6 +57,7 @@
   <script src="{{ asset('util/bootstrap-5.1.3-slim/bootstrap-table.min.js') }}"></script>
   <script src="{{ asset('util/multi-select/filter-multi-select-bundle.min.js') }}"></script>
   <script src="{{ asset('util/bootbox.min.js') }}"></script>
+  <script src="https://js.pusher.com/7.2.0/pusher.min.js"></script>
 
   <link href="{{ asset('util/custom.css') }}" rel="stylesheet">
   <script>
@@ -67,15 +68,32 @@
     // Notification 
     if (!("Notification" in window))
       alert("This browser does not support desktop notification");
-    else if (Notification.permission === "granted") {
-      const notification = new Notification("Hi there!");
-    } else if (Notification.permission !== "denied") {
+    else if (Notification.permission !== "denied") {
       Notification.requestPermission().then((permission) => {
-        if (permission === "granted") {
-          const notification = new Notification("Hi there!");
-        }
+        if (permission === "granted") {}
       });
     }
+
+    Pusher.logToConsole = false;
+    const pusher = new Pusher("BASED_MANTENAR", {
+      wsHost: '127.0.0.1',
+      wsPort: 6001,
+      wsPath: this.app.path === null ? '' : this.app.path,
+      cluster: "mt1",
+      forceTLS: false,
+      authEndpoint: `/laravel-websockets/auth`,
+      auth: {
+        headers: {
+          'X-CSRF-Token': "{{ csrf_token() }}",
+          'X-App-ID': 'BASED_MANTENAR',
+        },
+      },
+    });
+    // const channel = pusher.subscribe("private-share");
+    // channel.bind("App\\Events\\NewShare", (data) => {
+    //   console.log('data: ', data);
+    //   const notification = new Notification("Got a new share!");
+    // });
   </script>
   @stack('scripts')
 </body>

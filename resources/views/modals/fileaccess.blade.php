@@ -39,7 +39,7 @@
                 @foreach ($share->viewers as $viewer)
                 <tr>
                   <td> {{$loop->index + 1}} </td>
-                  <td> {{$viewer->fullname}} | {{$user->job_title}} </td>
+                  <td> {{$viewer->fullname}} | {{$viewer->job_title}} </td>
                   <td class="float__left">
                     <btn class="btn btn-outline-danger" onclick="remove_access('{{$viewer->id}}')">Remove</btn>
                   </td>

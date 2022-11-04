@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Events\NewShare;
 use App\Models\Share;
 use App\Models\Trail;
 
@@ -20,6 +21,8 @@ class ShareObserver
       'action' => "Shared a new file '" . $share->name . "' with " . $share->viewers->count() . " users",
       'author_user_id' => Auth()->user()->id
     ]);
+
+    NewShare::dispatch($share);
   }
 
   /**

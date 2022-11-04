@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('app_content')
-
+@php
+$messages = array();
+@endphp
 <div class="row py-4">
   <div class="col-md-8 pb-4 pb-md-0">
     <div class="r__10 p-3 bg-white">
@@ -60,6 +62,7 @@
 
       <div id="comments_list" class="__comments">
         @forelse($comments as $comment)
+        @php array_push($messages, $comment->id); @endphp
         <div class="{{ ($comment->author_user_id == Auth()->user()->id) ? 'comment__right' : 'comment__left'}}">
           <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3 bg-me">
             {{$comment->body}}
@@ -98,6 +101,8 @@
     }
   }
   scroll_comments_list()
+  let msg_list = <?php echo json_encode($messages); ?>;
+  let length = <?php echo $comments->count(); ?>;
 
   function send_comment() {
     $.ajax({
@@ -110,7 +115,6 @@
       },
       error: err => console.log('err: ', err),
       success: result => {
-        let length = <?php echo $comments->count(); ?>;
         if (result.comment) {
           if (length < 1) $('#comments_list').text('')
           $('#comments_list').append(`
@@ -122,6 +126,7 @@
           </div>`)
           $('#comment_box').val('')
           scroll_comments_list()
+          msg_list.push(result.comment.id)
         }
       }
     })
@@ -158,6 +163,44 @@
       }
     });
   }
+
+  function newComment(data) {
+    if (!msg_list.includes(data.xpr)) {
+
+      $.ajax({
+        url: "/get_comment" + '/' + data.xpr,
+        method: 'GET',
+        error: err => console.log('err: ', err),
+        success: result => {
+          if (result.comment) {
+            if (length < 1) $('#comments_list').text('')
+            $('#comments_list').append(`
+            <div class=${ (result.comment.author_user_id == <?php echo Auth()->user()->id; ?> ) ? 'comment__right' : 'comment__left'}>
+              <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3 bg-me">
+                ${result.comment.body}
+                <div class="text-muted text-nowrap">  <small>${result.comment.date + ' | ' +result.comment.time}</small> </div>
+              </div>
+            </div>`)
+            scroll_comments_list()
+            msg_list.push(result.comment.id)
+
+            const notification = new Notification('New Comment ', {
+              body: result.comment.body,
+              tag: 'mantenarComment',
+              icon: '/images/mantenar.svg',
+              badge: '/images/mantenar.svg',
+              vibrate: [200, 100, 200]
+            });
+          }
+        }
+      })
+    }
+  }
+
+  const comment_channel = pusher.subscribe("private-comments.{{$share->id}}");
+  comment_channel.bind("App\\Events\\NewComment", (data) => {
+    newComment(data);
+  });
 </script>
 @endpush
 

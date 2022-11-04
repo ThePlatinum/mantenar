@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\NewComment;
+use App\Events\NewShare;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
@@ -9,6 +11,9 @@ use App\Http\Controllers\ShareController;
 use App\Http\Controllers\TrailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewerController;
+use App\Models\Comment;
+use App\Models\Viewer;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +22,11 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+
+Route::get('/test_event', function () {
+  NewComment::dispatch(1);
+});
 
 Route::middleware(['setup', 'auth'])->group(function () {
   Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -28,6 +38,7 @@ Route::middleware(['setup', 'auth'])->group(function () {
   });
 
   Route::post('/send_comment', [CommentController::class, 'store'])->name('send_comment');
+  Route::get('/get_comment/{comment_id}', [CommentController::class, 'get'])->name('get_comment');
   Route::get('/trails', [TrailController::class, 'index'])->name('trail');
 
   Route::middleware(['admin'])->group(function () {
