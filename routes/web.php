@@ -23,11 +23,6 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-
-Route::get('/test_event', function () {
-  NewComment::dispatch(1);
-});
-
 Route::middleware(['setup', 'auth'])->group(function () {
   Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 

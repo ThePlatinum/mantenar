@@ -86,14 +86,18 @@ class ShareController extends Controller
     $comments = Comment::where('share_id', $share->id)->get();
 
     $already_ = $share->viewers->pluck('id');
-    $users = User::where('id', '!=', Auth()->user()->id)->whereNotIn('id', $already_)->get();
 
-    return view('viewshare', compact('share', 'comments', 'users'));
+    if (in_array(auth()->user()->id, $already_->all()) || auth()->user()->is_admin || auth()->user()->id == $share->author_user_id) {
+      $users = User::where('id', '!=', Auth()->user()->id)->whereNotIn('id', $already_->all())->get();
+      return view('viewshare', compact('share', 'comments', 'users'));
+    }
+    
+    return redirect()->route('dashboard')->with('error', "You don't have permission to view this file");
   }
-  
+
   public function all()
   {
-    return view('all_share', ['all'=> Share::all()]);
+    return view('all_share', ['all' => Share::all()]);
   }
 
   /**
