@@ -63,6 +63,8 @@
   <script>
     setTimeout(function() {
       $(".alert").hide('medium');
+      console.clear()
+      console.log('...'.repeat('15'), '\n Thanks for using \n MANTENAR \n', '...'.repeat('15'));
     }, 3000);
 
     // Notification 
@@ -89,11 +91,6 @@
         },
       },
     });
-    // const channel = pusher.subscribe("private-share");
-    // channel.bind("App\\Events\\NewShare", (data) => {
-    //   console.log('data: ', data);
-    //   const notification = new Notification("Got a new share!");
-    // });
   </script>
   @stack('scripts')
 </body>

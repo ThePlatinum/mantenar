@@ -113,7 +113,7 @@ $messages = array();
         body: $('#comment_box').val(),
         _token: '{{csrf_token()}}'
       },
-      error: err => console.log('err: ', err),
+      error: err => {},
       success: result => {
         if (result.comment) {
           if (length < 1) $('#comments_list').text('')
@@ -170,7 +170,7 @@ $messages = array();
       $.ajax({
         url: "/get_comment" + '/' + data.xpr,
         method: 'GET',
-        error: err => console.log('err: ', err),
+        error: err => {},
         success: result => {
           if (result.comment) {
             if (length < 1) $('#comments_list').text('')
