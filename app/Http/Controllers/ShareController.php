@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewShare;
 use App\Models\Comment;
 use App\Models\Share;
+use App\Models\Trail;
 use App\Models\User;
 use App\Models\Viewer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 class ShareController extends Controller
@@ -54,6 +58,20 @@ class ShareController extends Controller
           'share_id' => $share->id,
           'user_id' => $value
         ]);
+      }
+    }
+
+    Trail::create([
+      'action' => "Shared a new file '" . $share->name . "' with " . $share->viewers->count() . " users",
+      'author_user_id' => Auth()->user()->id
+    ]);
+
+    $url = URL::route('viewshare', $slug);
+    foreach ($share->viewers as $viewer) {
+      try {
+        Mail::to($viewer->email)->send(new NewShare($share, $url));
+      } catch (\Throwable $th) {
+        throw $th;
       }
     }
 

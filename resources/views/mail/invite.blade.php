@@ -1,11 +1,12 @@
 <x-mail::message>
 # Collaboration Invitation
 
-Hi, 
+Hi,
 
 {{ \App\Models\Setting::org_name() }} has invited you to collaborate and share files with them.
 
-<small>Link is valid for 48 hours only</small>
+<b>Link is valid for 48 hours only</b>
+
 <x-mail::button :url="$url" color="primary">
 Accept Invitation
 </x-mail::button>

@@ -16,14 +16,5 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('comments.{id}', function ($user, $id) {
-  // $viewers = Viewer::where('share_id', $id)->pluck('user_id')->all();
-  // dd($viewers);
-  // return in_array(auth()->user()->id, $viewers);
-  return false;
-});
-
-Broadcast::channel('share', function ($user, $id) {
-  // $viewers = Viewer::where('share_id', $id)->get()->pluck('id');
-  // return array_key_exists($user->id, $viewers);
   return true;
 });

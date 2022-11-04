@@ -63,8 +63,8 @@
   <script>
     setTimeout(function() {
       $(".alert").hide('medium');
-      console.clear()
-      console.log('...'.repeat('15'), '\n Thanks for using \n MANTENAR \n', '...'.repeat('15'));
+      // console.clear()
+      // console.log('***'.repeat('15'), '\n Thanks for using \n', 'MANTENAR', '\n', '***'.repeat('15'));
     }, 3000);
 
     // Notification 
