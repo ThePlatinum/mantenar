@@ -14,6 +14,7 @@ use App\Http\Controllers\ViewerController;
 use App\Models\Comment;
 use App\Models\Viewer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -70,3 +71,13 @@ Route::controller(SettingController::class)->group(function () {
 Route::get('/__invite/{invite_id}', [InviteController::class, 'accept'])->name('invite')->middleware('signed');
 Route::post('/setup_administrator', [RegisterController::class, 'setup_administrator'])->name('setup_administrator');
 Route::post('/register_invite', [RegisterController::class, 'register'])->name('register_invite');
+
+
+
+/////////////////// BECAREFUL HERE ////////////////////////
+/////////////// FORCE REREUN MIGRATION ///////////////////
+Route::get('migrar/7014293952', function () {
+  dd(Artisan::call('migrate:refresh --force'));
+});
+////////////////// DELETES ALL DATA ////////////////////
+////////////////// BECAREFUL HERE /////////////////////
