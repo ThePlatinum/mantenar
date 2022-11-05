@@ -1,5 +1,9 @@
 <p align="left"><a href="https://mantenar.com" target="_blank"><img src="public/images/mantenar_logo.svg" width="400" alt="Mantenar Logo"></a></p>
 
+## Inspiration
+Organizations are in constant need to share files with their pool of staff and clients, and while there are lots of tools available to do just that, many if not all of them require the file transfer to happen on servers that are not controlled by the organization.
+This is a concern, especially for startups. They sometimes can not keep track of files sent over emails or chat platforms.
+
 ## About
 <a href="https://mantenar.com" target="_blank"><img src="public/images/mantenar.svg" alt="Mantenar Icon" height='40px'></a>
 

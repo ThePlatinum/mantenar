@@ -19,7 +19,7 @@ return new class extends Migration
       $table->string('lastname');
       $table->string('job_title');
       $table->boolean('is_admin')->default(false);
-      $table->string('email')->unique();
+      $table->string('email');
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->rememberToken();

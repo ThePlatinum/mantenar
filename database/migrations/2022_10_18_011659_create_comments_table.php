@@ -16,8 +16,8 @@ return new class extends Migration
     Schema::create('comments', function (Blueprint $table) {
       $table->id();
       $table->string('body');
-      $table->foreignIdFor(App\Models\Share::class, 'share_id')->constrained('shares')->cascadeOnDelete();
-      $table->foreignIdFor(App\Models\User::class, 'author_user_id')->constrained('users');
+      $table->unsignedBigInteger('share_id');
+      $table->unsignedBigInteger('author_user_id');
       $table->timestamps();
     });
   }

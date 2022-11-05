@@ -20,7 +20,7 @@ return new class extends Migration
       $table->string('type');
       $table->string('size');
       $table->string('slug');
-      $table->foreignIdFor(App\Models\User::class, 'author_user_id')->constrained('users');
+      $table->unsignedBigInteger('author_user_id');
       $table->string('note')->nullable();
       $table->timestamps();
     });
