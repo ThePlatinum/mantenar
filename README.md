@@ -7,12 +7,18 @@ This is a concern, especially for startups. They sometimes can not keep track of
 ## About
 <a href="https://mantenar.com" target="_blank"><img src="public/images/mantenar.svg" alt="Mantenar Icon" height='40px'></a>
 
-<span style='font-size: 26px'>Mantener</span> is a simple file management system for organizations to maintain file share with their staffs.
+**Mantener** is a simple file management system for organizations to maintain file share with their staffs.
 
-### Features
+## What it does
+Mantenar gives startups the space to host their files and manage them on their self-owned server is a great fit. This will ensure no need to transfer files to places beyond their control, or unnecessary use of paper in printing documents for local storage.
+With the features to decide who should have access to a file or not, amazingly UNLIMITED file transfer size limit or storage cap, Mantenar gives power to its users.
+Mantenar can be EASILY installed on any server with a simple 'get started' process.
+
+## Features
 - Simple, Fast File Sharing Management
 - Role Based User Management
 - Multiple File type support
+- Real time chat/comment on file shares
 
 ## Using Mantenar
 I provide full technical support for setting up and using Mantener, but, if you have the know how, then:
@@ -23,20 +29,26 @@ I provide full technical support for setting up and using Mantener, but, if you 
 - Run `php artisan key:generate`
 - Run `php artisan serve`
 
-## Incoming/Possible Features
+## What's next for Mantenar
+Mantenar will grow into a large suite of Management Tools for Startups, more features that will be added to Mantenar includes:
 - Improved User Interaction and Content
-- Settings Page
-- Super Admin Account?
-- Google Integration for Easy Email
-- Sending Action Emails
-- File Viewers with no Accounts
+- Settings Page(s)
+- A Super Admin Account for more 'Admin' Features
+- Google Drive, FTP, FileZilla Integration
+- Allowing File Viewers with no Accounts (for sharing files with clients who don't need to be logged in)
 - Disable/Enable Download Option
 - Temporary File Access
 - Auto Deleting Files
-- Add a Mobile App
+- A Mobile App for full customization
 - Error/Performance Monitoring
-- Other Integrations such as FTP and FileZilla
 - Private Staff Account Email System
+- SAAS Version
+
+## How we built it
+Mantenar is built with PHP using the Laravel 9 framework, Javascript, HTML and CSS and plugins like jQuery and bootstrap. With SingleStoreDB powering the Application.
+
+## Accomplishments that we're proud of
+Of all the already implemented features of Mantener, I am more proud of the 'live chat', I was able to implement this without using any NPM package and that was awesome because there aren't many resources available on how to do that.
 
 ## Non Default Packages used
 - laravel/ui
@@ -48,3 +60,4 @@ I provide full technical support for setting up and using Mantener, but, if you 
 
 ## License
 Mantenar is open-sourced and licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
