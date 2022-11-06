@@ -15,15 +15,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [L,R=301]
 
-# Compress Content
-Accept-Encoding: gzip
-Accept-Encoding: gzip
-Accept-Encoding: compress
-Accept-Encoding: deflate
-Accept-Encoding: br
-Accept-Encoding: identity
-Accept-Encoding: *
-
 php_value post_max_size 2G
 php_value upload_max_filesize 2G
 php_value memory_limit 2G
