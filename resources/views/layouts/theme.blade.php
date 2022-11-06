@@ -8,9 +8,12 @@
   <title>{{ config('app.name', 'Mantenar') }}</title>
   <meta name="author" content="Emmanuel Adesina">
   </meta>
-  <meta name="description" content="Software  to keep organization file share secure and unbounded">
+  <meta name="description" content="To keep organization file share secure and unbounded">
   </meta>
   <link rel="icon" type="images/mantenar.svg" href="{{ asset('images/mantenar.svg') }}">
+  <link rel="manifest" href="{{ asset('/manifest.json') }}" />
+  <link rel="apple-touch-icon" href="{{ asset('images/mantenar.svg') }}" />
+  <meta name="theme-color" content="#080A41" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" defer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous" defer></script>
 </head>
@@ -63,17 +66,19 @@
   <script>
     setTimeout(function() {
       $(".alert").hide('medium');
-      // console.clear()
-      // console.log('***'.repeat('15'), '\n Thanks for using \n', 'MANTENAR', '\n', '***'.repeat('15'));
+      console.clear()
+      console.log('***'.repeat('15'), '\n Thanks for using \n', 'MANTENAR', '\n', '***'.repeat('15'));
     }, 3000);
 
     // Notification 
-    if (!("Notification" in window))
-      alert("This browser does not support desktop notification");
-    else if (Notification.permission !== "denied") {
-      Notification.requestPermission().then((permission) => {
-        if (permission === "granted") {}
-      });
+    window.onload =()=>{
+      if (!("Notification" in window))
+        alert("This browser does not support desktop notification");
+      else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {}
+        });
+      }
     }
 
     Pusher.logToConsole = false;
@@ -93,6 +98,13 @@
     });
   </script>
   @stack('scripts')
+
+  <!-- <script src="{{ asset('/sw.js') }}"></script> -->
+  <script>
+    if (!navigator.serviceWorker.controller) {
+      navigator.serviceWorker.register("/sw.js").then(function() {});
+    }
+  </script>
 </body>
 
 </html>

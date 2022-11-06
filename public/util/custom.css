@@ -62,7 +62,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .mt__neg__ {
-  margin-top: -220px;
+  margin-top: -180px;
 }
 
 .ml__neg__ {
@@ -257,7 +257,7 @@ iframe.file__share {
 
 @media(max-width:500px) {
   .mt__neg__ {
-    margin-top: -300px;
+    margin-top: -280px;
   }
   .alert {
     position: fixed;

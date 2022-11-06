@@ -34,6 +34,7 @@ Mantenar will grow into a large suite of Management Tools for Startups, more fea
 - Improved User Interaction and Content
 - Settings Page(s)
 - A Super Admin Account for more 'Admin' Features
+- Team Share
 - Google Drive, FTP, FileZilla Integration
 - Allowing File Viewers with no Accounts (for sharing files with clients who don't need to be logged in)
 - Disable/Enable Download Option
