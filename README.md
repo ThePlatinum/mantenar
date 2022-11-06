@@ -34,6 +34,7 @@ Mantenar can be EASILY installed on any server with a simple 'get started' proce
     - Must set email details
 - Run `php artisan key:generate`
 - Run `php artisan migrate --force`
+- Run `php artisan storage:link`
 - Run `php artisan serve` to start the application
 - Run `php artisan websocket:serve` to start the websocket server
 - Check how to use [here](https://mantenar.com/how) \
