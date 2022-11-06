@@ -77,7 +77,18 @@ Route::post('/register_invite', [RegisterController::class, 'register'])->name('
 /////////////////// BECAREFUL HERE ////////////////////////
 /////////////// FORCE REREUN MIGRATION ///////////////////
 Route::get('migrar/7014293952', function () {
-  dd(Artisan::call('migrate:refresh --force'));
+  try {
+    Artisan::call('migrate:refresh --force');
+    $status = "Success!";
+    $message = "Mantenar Demo is refreshed to fresh installation";
+    $action = "Get Started Now";
+    return view('migrar', compact('status', 'message', 'action'));
+  } catch (\Throwable $th) {
+    $status = "Error!";
+    $message = "Couldn't refresh to fresh installation";
+    $action = "Go Back";
+    return view('migrar', compact('status', 'message', 'action'));
+  }
 });
 ////////////////// DELETES ALL DATA ////////////////////
 ////////////////// BECAREFUL HERE /////////////////////

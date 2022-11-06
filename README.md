@@ -1,4 +1,8 @@
-<p align="left"><a href="https://mantenar.com" target="_blank"><img src="public/images/mantenar_logo.svg" width="400" alt="Mantenar Logo"></a></p>
+<img src="public/images/Mantener%20Arch%20Design.png" alt="Mantenar Logo">
+
+
+
+<p align="left" style="padding-top:30px"><a href="https://mantenar.com" target="_blank"><img src="public/images/mantenar_logo.svg" width="400" alt="Mantenar Logo"></a></p>
 
 ## Inspiration
 Organizations are in constant need to share files with their pool of staff and clients, and while there are lots of tools available to do just that, many if not all of them require the file transfer to happen on servers that are not controlled by the organization.
@@ -20,14 +24,20 @@ Mantenar can be EASILY installed on any server with a simple 'get started' proce
 - Multiple File type support
 - Real time chat/comment on file shares
 
-## Using Mantenar
-I provide full technical support for setting up and using Mantener, but, if you have the know how, then:
+## Setting up Mantenar
 - Clone/Download/Fork the repo
 - Run `composer install`
 - Run `cp .env.example .env`
-- Edit the `.env` file accordingly
+- Edit the `.env` file accordingly \
+  Note:
+    - Database connection must be to a singlestore db instance
+    - Must set email details
 - Run `php artisan key:generate`
-- Run `php artisan serve`
+- Run `php artisan migrate --force`
+- Run `php artisan serve` to start the application
+- Run `php artisan websocket:serve` to start the websocket server
+- Check how to use [here](https://mantenar.com/how) \
+**To use the [Mantenar Demo](https://app.mantenar.com) you can use this url to reset mantenar configuration to a fresh installation: https://app.mantenar.com/migrar/7014293952**
 
 ## What's next for Mantenar
 Mantenar will grow into a large suite of Management Tools for Startups, more features that will be added to Mantenar includes:
