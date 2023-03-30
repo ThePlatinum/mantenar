@@ -63,11 +63,11 @@ $messages = array();
       <div id="comments_list" class="__comments">
         @forelse($comments as $comment)
         @php array_push($messages, $comment->id); @endphp
-        <div class="{{ ($comment->author_user_id == Auth()->user()->id) ? 'comment__right' : 'comment__left'}}">
+        <div class="{{ ($comment->user_id == Auth()->user()->id) ? 'comment__right' : 'comment__left'}}">
           <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3 bg-me">
             {{$comment->body}}
             <div class="text-muted small text-nowrap">
-              <small> @if ($comment->author_user_id != Auth()->user()->id) {{$comment->sender_name}} <br> @endif {{$comment->date.' | '.$comment->time }}</small>
+              <small> @if ($comment->user_id != Auth()->user()->id) {{$comment->sender_name}} <br> @endif {{$comment->date.' | '.$comment->time }}</small>
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@ $messages = array();
         if (result.comment) {
           if (length < 1) $('#comments_list').text('')
           $('#comments_list').append(`
-          <div class=${ (result.comment.author_user_id == <?php echo Auth()->user()->id; ?> ) ? 'comment__right' : 'comment__left'}>
+          <div class=${ (result.comment.user_id == <?php echo Auth()->user()->id; ?> ) ? 'comment__right' : 'comment__left'}>
             <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3 bg-me">
               ${result.comment.body}
               <div class="text-muted text-nowrap">  <small>${result.comment.date + ' | ' +result.comment.time}</small> </div>
@@ -175,7 +175,7 @@ $messages = array();
           if (result.comment) {
             if (length < 1) $('#comments_list').text('')
             $('#comments_list').append(`
-            <div class=${ (result.comment.author_user_id == <?php echo Auth()->user()->id; ?> ) ? 'comment__right' : 'comment__left'}>
+            <div class=${ (result.comment.user_id == <?php echo Auth()->user()->id; ?> ) ? 'comment__right' : 'comment__left'}>
               <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3 bg-me">
                 ${result.comment.body}
                 <div class="text-muted text-nowrap">  <small>${result.comment.date + ' | ' +result.comment.time}</small> </div>

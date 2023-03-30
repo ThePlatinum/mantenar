@@ -48,7 +48,7 @@
 
     <div class="text-center py-4">
       <hr>
-      <h6>Copyright &copy; Mantenar 2022 | <a class="b__p" href="https://emmannueldesina.vercel.app/" target="_blank" rel="noopener noreferrer">Platinum Innovations</a> </h6>
+      <h6>Copyright &copy; Mantenar 2022 | <a class="b__p" href="https://emmanueldesina.vercel.app/" target="_blank" rel="noopener noreferrer">Platinum Innovations</a> </h6>
     </div>
   </main>
 
@@ -67,7 +67,6 @@
     setTimeout(function() {
       $(".alert").hide('medium');
       console.clear()
-      console.log('***'.repeat('15'), '\n Thanks for using \n', 'MANTENAR', '\n', '***'.repeat('15'));
     }, 3000);
 
     // Notification 
@@ -82,7 +81,7 @@
     }
 
     Pusher.logToConsole = false;
-    const pusher = new Pusher("BASED_MANTENAR", {
+    const pusher = new Pusher("__MANTENAR", {
       wsHost: '127.0.0.1',
       wsPort: 6001,
       wsPath: this.app.path === null ? '' : this.app.path,
@@ -92,14 +91,13 @@
       auth: {
         headers: {
           'X-CSRF-Token': "{{ csrf_token() }}",
-          'X-App-ID': 'BASED_MANTENAR',
+          'X-App-ID': '__MANTENAR',
         },
       },
     });
   </script>
   @stack('scripts')
-
-  <!-- <script src="{{ asset('/sw.js') }}"></script> -->
+  
   <script>
     if (!navigator.serviceWorker.controller) {
       navigator.serviceWorker.register("/sw.js").then(function() {});

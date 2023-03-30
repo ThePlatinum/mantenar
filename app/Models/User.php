@@ -48,7 +48,7 @@ class User extends Authenticatable
   ];
 
   public function sent() {
-    return $this->hasMany(Share::class, 'author_user_id');
+    return $this->hasMany(Share::class, 'user_id');
   }
 
   public function recieved() {

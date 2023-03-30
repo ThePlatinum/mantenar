@@ -49,7 +49,7 @@ class ShareController extends Controller
       'size' => $the_file->getSize(),
       'slug' => $slug,
       'note' => $request->note,
-      'author_user_id' => Auth()->user()->id
+      'user_id' => Auth()->user()->id
     ]);
 
     if ($share) {
@@ -63,7 +63,7 @@ class ShareController extends Controller
 
     Trail::create([
       'action' => "Shared a new file '" . $share->name . "' with " . $share->viewers->count() . " users",
-      'author_user_id' => Auth()->user()->id
+      'user_id' => Auth()->user()->id
     ]);
 
     $url = URL::route('viewshare', $slug);
@@ -87,7 +87,7 @@ class ShareController extends Controller
 
     $already_ = $share->viewers->pluck('id');
 
-    if (in_array(auth()->user()->id, $already_->all()) || auth()->user()->is_admin || auth()->user()->id == $share->author_user_id) {
+    if (in_array(auth()->user()->id, $already_->all()) || auth()->user()->is_admin || auth()->user()->id == $share->user_id) {
       $users = User::where('id', '!=', Auth()->user()->id)->whereNotIn('id', $already_->all())->get();
       return view('viewshare', compact('share', 'comments', 'users'));
     }

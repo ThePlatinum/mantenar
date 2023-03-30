@@ -40,7 +40,7 @@ class ShareObserver
   {
     Trail::create([
       'action' => "Deleted file '" . $share->name . "'",
-      'author_user_id' => Auth()->user()->id
+      'user_id' => Auth()->user()->id
     ]);
   }
 
@@ -65,7 +65,7 @@ class ShareObserver
   {
     Trail::create([
       'action' => "Deleted file '" . $share->name . "'",
-      'author_user_id' => Auth()->user()->id
+      'user_id' => Auth()->user()->id
     ]);
   }
 }

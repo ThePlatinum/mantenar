@@ -20,7 +20,7 @@ class CommentController extends Controller
     if ($validator->fails()) return response()->json(400);
 
     $comment = Comment::create([
-      'author_user_id' => Auth()->user()->id,
+      'user_id' => Auth()->user()->id,
       'share_id' => $request->share_id,
       'body' => $request->body,
     ]);
@@ -33,7 +33,7 @@ class CommentController extends Controller
   public function get($comment_id)
   {
     $comment = Comment::find($comment_id);
-    if ($comment && ($comment->author_user_id != auth()->user()->id))
+    if ($comment && ($comment->user_id != auth()->user()->id))
       return response()->json(['comment' => $comment], 200);
   }
 }

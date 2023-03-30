@@ -17,7 +17,7 @@ class Comment extends Model
 
   public function getSenderNameAttribute()
   {
-    return User::find($this->author_user_id)->fullname;
+    return User::find($this->user_id)->fullname;
   }
 
   public function getDateAttribute()

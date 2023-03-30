@@ -39,7 +39,7 @@ class UserObserver
   {
     Trail::create([
       'action' => "Revoked (Disabled) user ". $user->fullname ."'s Account access",
-      'author_user_id' => Auth()->user()->id
+      'user_id' => Auth()->user()->id
     ]);
 
     // TODO: Send notification
@@ -55,7 +55,7 @@ class UserObserver
   {
     Trail::create([
       'action' => "Restored (Enabled) user ". $user->fullname ."'s Account access",
-      'author_user_id' => Auth()->user()->id
+      'user_id' => Auth()->user()->id
     ]);
 
     // TODO: Send notification
@@ -72,7 +72,7 @@ class UserObserver
     //
     Trail::create([
       'action' => "Deleted user ". $user->fullname ."'s Account",
-      'author_user_id' => Auth()->user()->id
+      'user_id' => Auth()->user()->id
     ]);
 
     // TODO: Send notification
